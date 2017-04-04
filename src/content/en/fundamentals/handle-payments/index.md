@@ -10,7 +10,6 @@ description: Payment Request API is for fast, easy payments on the web.
 {% include "web/_shared/contributors/agektmr.html" %}
 {% include "web/_shared/contributors/dgash.html" %}
 {% include "web/_shared/contributors/zkoch.html" %}
-{% include "web/_shared/contributors/mattgaunt.html" %}
 
 Buying goods online is a convenient but often frustrating experience,
 particularly on mobile devices. Although mobile traffic continues to increase,

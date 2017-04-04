@@ -5,12 +5,55 @@ description: A guide to implementing the Payment Request API.
 {# wf_published_on: 2016-07-25 #}
 {# wf_updated_on: 2016-12-06 #}
 
-# Implementing the Payment Request API {: .page-title }
+# Introduction to the Payment Request API {: .page-title }
 
 {% include "web/_shared/contributors/agektmr.html" %}
 {% include "web/_shared/contributors/dgash.html" %}
 {% include "web/_shared/contributors/zkoch.html" %}
 {% include "web/_shared/contributors/mattgaunt.html" %}
+
+The Payment Request API vastly improves the checkout flow for users by providing
+a consistent user experience and making it easy to re-use their existing
+payment methods.
+
+Some of the benefit for merchants are:
+
+* Completely new users will be able to go through the checkout flow without
+  needing to type any details (Their billing details and additional information
+  will be pre-populated by the browser).
+* Simple JavaScript API supported across multiple browsers.
+* Flexible enough to support credit transactions through to payment processors.
+
+What does this look like in practice?
+
+// TODO: Screenshot of basic store -> Payment Request -> Spinner -> Done.
+
+What's great for users and merchants alike is that the browser can populate
+this UI with all the necessary details, meaning the user can checkout as
+quickly as possible, regardless of whether they are a new or returning customer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Dogfood: <code>PaymentRequest</code> is still in development. While we think
 it's stable enough to implement, it may continue to change. We'll <a
