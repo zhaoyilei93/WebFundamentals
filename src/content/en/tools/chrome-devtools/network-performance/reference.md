@@ -24,8 +24,9 @@ figcaption {
 Discover new ways to analyze how your page loads in this comprehensive
 reference of Chrome DevTools network analysis features.
 
-Note: This reference is based on Chrome 58, which is currently
-[Canary](https://www.google.com/chrome/browser/canary.html).
+Note: This reference is based on Chrome 58. If you use another version
+of Chrome, the UI and features of DevTools may be different. Check
+`chrome://help` to see what version of Chrome you're running.
 
 ## Record network requests {: #record }
 
