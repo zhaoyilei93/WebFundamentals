@@ -210,22 +210,18 @@ limitations under the License.
     height: 24px;
     vertical-align: middle;
   }
-
   howto-checkbox[aria-checked="true"] {
     background: url('/web/fundamentals/architecture/howto-components/./images/checked-checkbox.svg') no-repeat;
     background-size: contain;
   }
-
   howto-checkbox[aria-disabled="true"] {
     background: url('/web/fundamentals/architecture/howto-components/./images/unchecked-checkbox-disabled.svg') no-repeat;
     background-size: contain;
   }
-
   howto-checkbox[aria-checked="true"][aria-disabled="true"] {
     background: url('/web/fundamentals/architecture/howto-components/./images/checked-checkbox-disabled.svg') no-repeat;
     background-size: contain;
   }
-
   #join-label {
     vertical-align: middle;
     display: inline-block;
@@ -440,22 +436,18 @@ limitations under the License.
 <sPan class="indent">&nbsp;&nbsp;</span><sPan class="indent">&nbsp;&nbsp;</span>height: 24px;
 <sPan class="indent">&nbsp;&nbsp;</span><sPan class="indent">&nbsp;&nbsp;</span>vertical-align: middle;
 <sPan class="indent">&nbsp;&nbsp;</span>}
-
 <sPan class="indent">&nbsp;&nbsp;</span>howto-checkbox[aria-checked="true"] {
 <sPan class="indent">&nbsp;&nbsp;</span><sPan class="indent">&nbsp;&nbsp;</span>background: url('./images/checked-checkbox.svg') no-repeat;
 <sPan class="indent">&nbsp;&nbsp;</span><sPan class="indent">&nbsp;&nbsp;</span>background-size: contain;
 <sPan class="indent">&nbsp;&nbsp;</span>}
-
 <sPan class="indent">&nbsp;&nbsp;</span>howto-checkbox[aria-disabled="true"] {
 <sPan class="indent">&nbsp;&nbsp;</span><sPan class="indent">&nbsp;&nbsp;</span>background: url('./images/unchecked-checkbox-disabled.svg') no-repeat;
 <sPan class="indent">&nbsp;&nbsp;</span><sPan class="indent">&nbsp;&nbsp;</span>background-size: contain;
 <sPan class="indent">&nbsp;&nbsp;</span>}
-
 <sPan class="indent">&nbsp;&nbsp;</span>howto-checkbox[aria-checked="true"][aria-disabled="true"] {
 <sPan class="indent">&nbsp;&nbsp;</span><sPan class="indent">&nbsp;&nbsp;</span>background: url('./images/checked-checkbox-disabled.svg') no-repeat;
 <sPan class="indent">&nbsp;&nbsp;</span><sPan class="indent">&nbsp;&nbsp;</span>background-size: contain;
 <sPan class="indent">&nbsp;&nbsp;</span>}
-
 <sPan class="indent">&nbsp;&nbsp;</span>#join-label {
 <sPan class="indent">&nbsp;&nbsp;</span><sPan class="indent">&nbsp;&nbsp;</span>vertical-align: middle;
 <sPan class="indent">&nbsp;&nbsp;</span><sPan class="indent">&nbsp;&nbsp;</span>display: inline-block;

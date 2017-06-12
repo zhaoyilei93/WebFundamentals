@@ -71,7 +71,6 @@ limitations under the License.
     color: #fff;
     border-radius: 3px;
   }
-
 </style>
 
 <div class="text">
@@ -199,7 +198,6 @@ window.customElements.define('howto-tooltip', HowtoTooltip);
 <sPan class="indent">&nbsp;&nbsp;</span><sPan class="indent">&nbsp;&nbsp;</span>color: #fff;
 <sPan class="indent">&nbsp;&nbsp;</span><sPan class="indent">&nbsp;&nbsp;</span>border-radius: 3px;
 <sPan class="indent">&nbsp;&nbsp;</span>}
-
 &lt;/style&gt;
 
 &lt;div class="text"&gt;
