@@ -1,223 +1,105 @@
-# ATTENTION - changes made to this file not in GitHub will be over written!
 project_path: /web/_project.yaml
 book_path: /web/_book.yaml
 landing_page:
   meta_tags:
   - name: google-site-verification
     content: gfXglzZkMnMmYyTURrVdYisraxO03w5_twQ-DO6QXC8
-  custom_css_path: /web/styles/wf-root.css
+  custom_css_path: /web/styles/wf-root-new.css
+
+  header:
+    description: >
+      <h2>Build the next generation of web experiences.</h2>
+      <p>
+        The average user visits more than 100 websites on their mobile
+        device every month, and expectations for speed and quality are higher
+        than ever. These resources can help you supercharge your new or
+        existing project with the next generation of web technologies in
+        order to deliver fast, secure, and performant content to any screen.
+      </p>
 
   rows:
-
-  - heading: Learn How to Develop the Next Generation of Applications for the Web
-    classname: devsite-landing-row-67
+  - classname: devsite-landing-row-cards
     items:
-    - description: >
-        <p>
-          The average user visits more than 100 websites on their mobile
-          device every month, and expectations for speed and quality are higher
-          than ever. These resources can help you supercharge your new or
-          existing project with the next generation of web technologies in
-          order to deliver fast, secure, and performant content to any screen.
-         </p>
-      image_path: images/hero-2x.png
+    - custom_html: >
+        <a href="/web/fundamentals/" class="gc-analytics-event" data-category="webHome" data-label="hero-webfu">
+          <h3 class="devsite-landing-row-item-header">Web Fundamentals</h3>
+        </a>
+        <div class="devsite-landing-row-item-description">
+          <div class="devsite-landing-row-item-description-content">
+            Our opinionated reference for building amazing web experiences.
+          </div>
+        </div>
+    - custom_html: >
+        <a href="/web/tools/" class="gc-analytics-event" data-category="webHome" data-label="hero-tools">
+          <h3 class="devsite-landing-row-item-header">Tools</h3>
+        </a>
+        <div class="devsite-landing-row-item-description">
+          <div class="devsite-landing-row-item-description-content">
+            Discover tools that can help you kickstart your development and improve your workflow.
+          </div>
+        </div>
+    - custom_html: >
+        <a href="/web/updates/" class="gc-analytics-event" data-category="webHome" data-label="hero-updates">
+          <h3 class="devsite-landing-row-item-header">Updates</h3>
+        </a>
+        <div class="devsite-landing-row-item-description">
+          <div class="devsite-landing-row-item-description-content">
+            Stay up to date on new web platform features, changes to Chrome and more.
+          </div>
+        </div>
 
-  - classname: devsite-landing-row-no-image-background
+
+  - classname: devsite-landing-row-cards hero-row-two
     items:
-    - heading: Web Fundamentals
-      description: >
-        The fundamental knowledge you need to build delightful, modern,
-        responsive web experiences. 
-      icon:
-        path: /web/images/web-fundamentals-icon192x192.png
-      path: /web/fundamentals/
-      path_attributes:
-      - name: class
-        value: gc-analytics-event
-      - name: data-category
-        value: webHome
-      - name: data-label
-        value: hero-webfu
-    - heading: Tools
-      description: >
-        Discover tools that can help you kickstart your development and 
-        improve your workflow.
-      icon:
-        icon_name: build
-      path: /web/tools/
-      path_attributes:
-      - name: class
-        value: gc-analytics-event
-      - name: data-category
-        value: webHome
-      - name: data-label
-        value: hero-tools
-    - heading: Updates
-      description: >
-        Stay up to date on new web platform features, changes to Chrome
-        and more.
-      icon:
-        icon_name: whatshot
-      path: /web/updates/
-      path_attributes:
-      - name: class
-        value: gc-analytics-event
-      - name: data-category
-        value: webHome
-      - name: data-label
-        value: hero-updates
+    - custom_html: >
+        <a href="/web/progressive-web-apps/" class="gc-analytics-event" data-category="webHome" data-label="hero-pwa">
+          <h3 class="devsite-landing-row-item-header">Progressive Web Apps</h3>
+        </a>
+        <div class="devsite-landing-row-item-description">
+          <div class="devsite-landing-row-item-description-content">
+            A new class of web app that is fast, integrated, reliable and engaging.
+          </div>
+        </div>
+    - custom_html: >
+        <a href="/web/feedback/" class="gc-analytics-event" data-category="webHome" data-label="hero-feedback">
+          <h3 class="devsite-landing-row-item-header">Get Involved</h3>
+        </a>
+        <div class="devsite-landing-row-item-description">
+          <div class="devsite-landing-row-item-description-content">
+            Check the state of existing bugs and provide feedback for web platform features on all browsers and platforms.
+          </div>
+        </div>
+    - custom_html: >
+        <a href="/web/ilt/pwa/" class="gc-analytics-event" data-category="webHome" data-label="hero-training">
+          <h3 class="devsite-landing-row-item-header">Training</h3>
+        </a>
+        <div class="devsite-landing-row-item-description">
+          <div class="devsite-landing-row-item-description-content">
+            Level-up your skills with in-person and online training courses for web developers.
+          </div>
+        </div>
+    - custom_html: >
+        <a href="/web/showcase/" class="gc-analytics-event" data-category="webHome" data-label="hero-showcase">
+          <h3 class="devsite-landing-row-item-header">Case Studies</h3>
+        </a>
+        <div class="devsite-landing-row-item-description">
+          <div class="devsite-landing-row-item-description-content">
+            Learn why and how other developers have used the web to create amazing web experiences for their users.
+          </div>
+        </div> 
 
 
-
-  - heading: A solution for everyone
-    classname: devsite-landing-row-no-image-background
+  - heading: Stay in the know
     items:
-    - heading: Progressive Web Apps
-      description: >
-        <p>
-          Progressive Web Applications take advantage of new technologies to
-          bring the best of mobile sites and native applications to users.
-          They are:
-        </p>
-        <ul class="checkmarks">
-          <li>
-            <b>Reliable</b> - Load instantly and never show the downasaur,
-            even in uncertain network conditions.
-          </li>
-          <li>
-            <b>Fast</b> - Respond quickly to user interactions with silky
-            smooth animations and no janky scrolling.
-          </li>
-          <li>
-            <b>Engaging</b> - Feel like a natural app on the device, with an
-            immersive user experience.
-          </li>
-        </ul>
-      icon:
-        icon_name: devices_other
-      path: /web/progressive-web-apps/
-      path_attributes:
-      - name: class
-        value: gc-analytics-event
-      - name: data-category
-        value: webHome
-      - name: data-label
-        value: solution-pwa
-    - heading: Accelerated Mobile Pages
-      description: >
-        <p>
-          The Accelerated Mobile Pages (AMP) project provides a new standard,
-          built on top of existing web technologies, to enable blazing-fast
-          page rendering and content delivery.
-        </p>
-        <ul class="checkmarks">
-          <li>
-            <b>Speed</b> - Pages load instantly which means more engagement.
-          </li>
-          <li>
-            <b>Openness</b> - It works everywhere, cross platform.
-          </li>
-          <li>
-            <b>Control</b> - It’s just HTML - you control how your content
-            looks and feels.
-          </li>
-        </ul>
-      icon:
-        icon_name: offline_bolt
-      path: /amp/
-      path_attributes:
-      - name: class
-        value: gc-analytics-event
-      - name: data-category
-        value: webHome
-      - name: data-label
-        value: solution-amp
-
-
-  - items:
-    - heading: Developer Feedback
-      description: >
-        <p>
-          Check the state of existing bugs through the Browser Bug Searcher and
-          learn how to give feedback for web platform features on all browsers
-          and platforms.
-        </p>
-      icon:
-        icon_name: bug_report
-      path: feedback/
-      path_attributes:
-      - name: class
-        value: gc-analytics-event
-      - name: data-category
-        value: webHome
-      - name: data-label
-        value: solution-feedback
-    - heading: ''
-      description: ''
-
-  - heading: Latest updates for Web Developers
-    items:
-    - classname: devsite-landing-row-50
-      description: >
-        <div class="feed hfeed" data-limit="2">
+    - custom_html: >
+        <div class="feed hfeed" data-limit="6">
           <a href="https://google-developers.appspot.com/web/updates/rss.xml"></a>
           <article class="hentry">
-            <a class="link gc-analytics-event" data-category="webHome" data-label="whats-new"><header></header></a>
+            <a class="link"><header></header></a>
             <article class="entry-content" data-truncate="50w"></article>
             <div>
-              <a class="link gc-analytics-event" data-category="webHome" data-label="whats-new"><time class="updated published"></time></a>
+              <a class="link"><time class="updated published"></time></a>
             </div>
           </article>
         </div>
-      youtube_id: 3tb-1MWg44Y
 
-  - heading: Follow best practices
-    classname: devsite-landing-row-no-image-background
-    items:
-    - heading: Move to HTTPS
-      description: >
-        HTTPS allows users to securely connect to your website or app. Set up
-        HTTPS to protect the integrity of your site, and the security of your
-        users.
-      image_path: images/content-https-2x.jpg
-      buttons:
-      - label: Learn more
-        path: /web/fundamentals/security/
-        classname: gc-analytics-event
-        attributes:
-        - name: data-category
-          value: webHome
-        - name: data-label
-          value: bp-https
-
-    - heading: Optimize performance
-      description: >
-        Users don’t have the patience to wait for sites that can’t deliver
-        content quickly. Learn testing techniques and best practices to ensure
-        that your sites and apps are optimized and performant.
-      image_path: images/content-performance-2x.jpg
-      buttons:
-      - label: Learn more
-        path: /web/fundamentals/performance/
-        classname: gc-analytics-event
-        attributes:
-        - name: data-category
-          value: webHome
-        - name: data-label
-          value: bp-optimize
-
-    - heading: Make it responsive
-      description: >
-        Modern users live on phones, tablets and laptops; your apps and
-        websites should do the same. Learn how to structure and code your
-        content to look great on screens of any size.
-      image_path: images/content-responsive-2x.jpg
-      buttons:
-      - label: Learn more
-        path: /web/fundamentals/design-and-ux/responsive/
-        classname: gc-analytics-event
-        attributes:
-        - name: data-category
-          value: webHome
-        - name: data-label
-          value: bp-responsive
