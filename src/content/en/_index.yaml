@@ -11,15 +11,12 @@ landing_page:
     description: >
       <h2>Build the next generation of web experiences.</h2>
       <p>
-        The average user visits more than 100 websites on their mobile device
-        every month, and expectations for speed and quality are higher than
-        ever. Supercharge your web experience with our resources and tools
-        to deliver a web experience that is <b>fast, integrated, reliable and
-        engaging</b>.
+        Supercharge your web experience with our resources and tools to deliver
+        a web experience that is <b>fast, integrated, reliable and engaging</b>.
       </p>
 
   rows:
-  - classname: devsite-landing-row-cards
+  - classname: devsite-landing-row-cards wf-cozy-cards
     items:
     - custom_html: >
         <a href="/web/fundamentals/" class="gc-analytics-event" data-category="webHome" data-label="hero-webfu">
@@ -27,8 +24,8 @@ landing_page:
         </a>
         <div class="devsite-landing-row-item-description">
           <div class="devsite-landing-row-item-description-content">
-            Our opinionated reference for building the next generation of web
-            experiences.
+            Tutorials and best practices for building the next generation of
+            web experiences.
           </div>
         </div>
     - custom_html: >
@@ -37,8 +34,8 @@ landing_page:
         </a>
         <div class="devsite-landing-row-item-description">
           <div class="devsite-landing-row-item-description-content">
-            Discover tools that can help you kickstart your development and
-            improve your workflow.
+            Discover tools to make your development easier and improve your
+            development artistry.
           </div>
         </div>
     - custom_html: >
@@ -53,7 +50,7 @@ landing_page:
         </div>
 
 
-  - classname: devsite-landing-row-cards hero-row-two
+  - classname: devsite-landing-row-cards wf-cozy-cards hero-row-two
     items:
     - custom_html: >
         <a href="/web/progressive-web-apps/" class="gc-analytics-event" data-category="webHome" data-label="hero-pwa">
@@ -97,7 +94,7 @@ landing_page:
         </div> 
 
 
-  - heading: Stay in the know <a href="https://google-developers.appspot.com/web/updates/rss.xml"><img class="rss-icon" src="https://www.gstatic.com/images/icons/material/system/2x/rss_feed_grey600_20dp.png"></a>
+  - heading: Latest News <a href="https://google-developers.appspot.com/web/updates/rss.xml"><img class="rss-icon" src="https://www.gstatic.com/images/icons/material/system/2x/rss_feed_grey600_20dp.png"></a>
     items:
     - custom_html: >
         <div class="feed hfeed" data-limit="6">

@@ -4,11 +4,6 @@
   .devsite-landing-page .devsite-product-description-row {
     max-width: 100%;
   }
-  @media screen and (min-width: 1000px) {
-    .devsite-landing-page .devsite-product-description-row {
-      max-width: calc((100% - 80px)/2);
-    }
-  }
 
   /* 1st item in RSS feed should have no top margin */
   article.hentry:first-of-type {
@@ -26,19 +21,42 @@
 
 /* WebFu Home Page specific styles */
 
-  /* Hero section - background image */
-  .webfu-home .devsite-collapsible-section {
-    background-image: url('/web/images/hero-2x.png'),
-                      url('/web/images/hero-yellow-bg.png');
-    background-position: right bottom, right bottom;
-    background-size: unset, contain;
-    background-repeat: no-repeat, no-repeat;
-  }
-  /* Hero section - styling for h2 */
+  /* Hero Banner */
   .webfu-home .devsite-collapsible-section h2 {
     border: 0;
-    font: 300 34px/40px Roboto, sans-serif;
+    font: 400 18px/20px Roboto, sans-serif;
   }
+  .webfu-home .devsite-collapsible-section p {
+    display: none;
+  }
+  @media screen and (min-width: 580px) {
+    .webfu-home .devsite-collapsible-section h2 {
+      font: 300 26px/32px Roboto, sans-serif;
+    }
+    .webfu-home .devsite-collapsible-section p {
+      display: block;
+      max-width: calc((100% - 80px)/3*2);
+    }
+  }
+  @media screen and (min-width: 720px) {
+    .webfu-home .devsite-collapsible-section {
+      background-image: url('/web/images/hero-2x-sm.png'),
+                        url('/web/images/hero-yellow-bg-sm.png');
+      background-position: right bottom, right bottom;
+      background-repeat: no-repeat, no-repeat;
+      background-size: unset, contain;
+    }
+    .webfu-home .devsite-collapsible-section h2 {
+      max-width: calc((100% - 280px));
+      padding-right: 0 !important;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    .webfu-home .devsite-collapsible-section h2 {
+      font: 300 34px/40px Roboto, sans-serif;
+    }
+  }
+
 
   /* Card like styling for items */
   .webfu-home .devsite-landing-row-item-header {
@@ -49,13 +67,30 @@
     background-color: #4285f4;
     color: white;
   }
+
   .webfu-home .hero-row-two {
     padding-top: 16px !important;
   }
+
   /* Shrink margin to 16px */
   .webfu-home .devsite-landing-row-column:not(:first-child),
   .webfu-home .devsite-landing-row-item:not(:first-child) {
     margin-left: 16px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .webfu-home  .devsite-landing-row-item:nth-child(2n) {
+      margin-left: 16px !important;
+    }
+    .webfu-home .devsite-landing-row-item:nth-child(n+3) {
+      margin-top: 16px !important;
+    }
+  }
+
+  @media screen and (max-width: 720px) {
+    .webfu-home  .devsite-landing-row-item:nth-child(2n) {
+      margin-left: 0 !important;
+    }
   }
 
   /* RSS feed icon */
