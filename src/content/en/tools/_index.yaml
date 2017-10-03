@@ -3,7 +3,7 @@ book_path: /web/tools/_book.yaml
 title: Tools
 
 landing_page:
-  custom_css_path: /web/styles/wf-root.css
+  custom_css_path: /web/styles/wf-base.css
 
   rows:
   - classname: devsite-landing-row-cards

@@ -1,20 +1,21 @@
 project_path: /web/_project.yaml
 book_path: /web/_book.yaml
 landing_page:
+  body_class: webfu-home
   meta_tags:
   - name: google-site-verification
     content: gfXglzZkMnMmYyTURrVdYisraxO03w5_twQ-DO6QXC8
-  custom_css_path: /web/styles/wf-root-new.css
+  custom_css_path: /web/styles/wf-base.css
 
   header:
     description: >
       <h2>Build the next generation of web experiences.</h2>
       <p>
-        The average user visits more than 100 websites on their mobile
-        device every month, and expectations for speed and quality are higher
-        than ever. These resources can help you supercharge your new or
-        existing project with the next generation of web technologies in
-        order to deliver fast, secure, and performant content to any screen.
+        The average user visits more than 100 websites on their mobile device
+        every month, and expectations for speed and quality are higher than
+        ever. Supercharge your web experience with our resources and tools
+        to deliver a web experience that is <b>fast, integrated, reliable and
+        engaging</b>.
       </p>
 
   rows:
@@ -26,7 +27,8 @@ landing_page:
         </a>
         <div class="devsite-landing-row-item-description">
           <div class="devsite-landing-row-item-description-content">
-            Our opinionated reference for building amazing web experiences.
+            Our opinionated reference for building the next generation of web
+            experiences.
           </div>
         </div>
     - custom_html: >
@@ -35,7 +37,8 @@ landing_page:
         </a>
         <div class="devsite-landing-row-item-description">
           <div class="devsite-landing-row-item-description-content">
-            Discover tools that can help you kickstart your development and improve your workflow.
+            Discover tools that can help you kickstart your development and
+            improve your workflow.
           </div>
         </div>
     - custom_html: >
@@ -44,7 +47,8 @@ landing_page:
         </a>
         <div class="devsite-landing-row-item-description">
           <div class="devsite-landing-row-item-description-content">
-            Stay up to date on new web platform features, changes to Chrome and more.
+            Stay up to date on new web platform features, changes to Chrome
+            and more.
           </div>
         </div>
 
@@ -57,7 +61,8 @@ landing_page:
         </a>
         <div class="devsite-landing-row-item-description">
           <div class="devsite-landing-row-item-description-content">
-            A new class of web app that is fast, integrated, reliable and engaging.
+            A new class of web app that is fast, integrated, reliable and
+            engaging.
           </div>
         </div>
     - custom_html: >
@@ -66,7 +71,8 @@ landing_page:
         </a>
         <div class="devsite-landing-row-item-description">
           <div class="devsite-landing-row-item-description-content">
-            Check the state of existing bugs and provide feedback for web platform features on all browsers and platforms.
+            Check the state of existing bugs and provide feedback for web
+            platform features.
           </div>
         </div>
     - custom_html: >
@@ -75,7 +81,8 @@ landing_page:
         </a>
         <div class="devsite-landing-row-item-description">
           <div class="devsite-landing-row-item-description-content">
-            Level-up your skills with in-person and online training courses for web developers.
+            Level-up your skills with in-person and online training courses for
+            web developers.
           </div>
         </div>
     - custom_html: >
@@ -84,12 +91,13 @@ landing_page:
         </a>
         <div class="devsite-landing-row-item-description">
           <div class="devsite-landing-row-item-description-content">
-            Learn why and how other developers have used the web to create amazing web experiences for their users.
+            Learn why and how other developers have used the web to create
+            amazing web experiences for their users.
           </div>
         </div> 
 
 
-  - heading: Stay in the know
+  - heading: Stay in the know <a href="https://google-developers.appspot.com/web/updates/rss.xml"><img class="rss-icon" src="https://www.gstatic.com/images/icons/material/system/2x/rss_feed_grey600_20dp.png"></a>
     items:
     - custom_html: >
         <div class="feed hfeed" data-limit="6">
@@ -102,4 +110,3 @@ landing_page:
             </div>
           </article>
         </div>
-

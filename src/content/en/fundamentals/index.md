@@ -6,8 +6,11 @@ page_type: landing
 {# wf_published_on: 2016-09-27 #}
 
 <style>
+  .nope,
+  .wf-webfu-landing .devsite-breadcrumb-nav,
+  .wf-webfu-landing .devsite-rating-container,
+  .wf-webfu-landing .devsite-page-nav-embedded { display:none; }
   .wf-hot {padding-top: 0 !important;}
-  .nope {display:none;}
   .wf-hero ul,
   .devsite-landing-row-item-description-content ul {list-style: none; padding-left: 0}
   .wf-hero > p {font-size: 2em; line-height: 1.2em; margin-top: 0}

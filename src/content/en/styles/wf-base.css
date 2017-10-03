@@ -1,0 +1,64 @@
+/* Site Wide */
+
+  /* Make the hero area full width */
+  .devsite-landing-page .devsite-product-description-row {
+    max-width: 100%;
+  }
+  @media screen and (min-width: 1000px) {
+    .devsite-landing-page .devsite-product-description-row {
+      max-width: calc((100% - 80px)/2);
+    }
+  }
+
+  /* 1st item in RSS feed should have no top margin */
+  article.hentry:first-of-type {
+    margin-top: 0;
+  }
+
+  /* Used similar to buttons to create small block links */
+  a.wf-small-block-link {
+   display:block;
+   margin:0 4px;
+   padding:2px 8px;
+  }
+
+
+
+/* WebFu Home Page specific styles */
+
+  /* Hero section - background image */
+  .webfu-home .devsite-collapsible-section {
+    background-image: url('/web/images/hero-2x.png'),
+                      url('/web/images/hero-yellow-bg.png');
+    background-position: right bottom, right bottom;
+    background-size: unset, contain;
+    background-repeat: no-repeat, no-repeat;
+  }
+  /* Hero section - styling for h2 */
+  .webfu-home .devsite-collapsible-section h2 {
+    border: 0;
+    font: 300 34px/40px Roboto, sans-serif;
+  }
+
+  /* Card like styling for items */
+  .webfu-home .devsite-landing-row-item-header {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    margin-bottom: 0 !important;
+    padding: 16px !important;
+    background-color: #4285f4;
+    color: white;
+  }
+  .webfu-home .hero-row-two {
+    padding-top: 16px !important;
+  }
+  /* Shrink margin to 16px */
+  .webfu-home .devsite-landing-row-column:not(:first-child),
+  .webfu-home .devsite-landing-row-item:not(:first-child) {
+    margin-left: 16px;
+  }
+
+  /* RSS feed icon */
+  .webfu-home .rss-icon {
+    vertical-align: text-bottom;
+  }
