@@ -18,6 +18,7 @@ src/content/*/fundamentals/glossary.md
 src/content/*/_shared/contributors/*.html
 src/content/*/_shared/latest_show.html
 src/content/*/_shared/latest_articles.html
+src/content/*/_shared/index-yaml-latest-updates.html
 src/content/*/resources/contributors/*
 src/content/*/resources/contributors.md
 src/content/*/updates/_index.yaml

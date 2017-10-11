@@ -189,6 +189,14 @@ function generateLatestWidget(files, options) {
   var template = path.join(GLOBAL.WF.src.templates, 'latest_articles.html');
   var outputFile = path.join(options.outputPath, '_shared', 'latest_articles.html');
   renderTemplate(template, context, outputFile);
+
+  gutil.log(' ', 'Generating latest updates widget for _index.yaml...');
+  context = {
+    articles: files.splice(0, 6)
+  };
+  var template = path.join(GLOBAL.WF.src.templates, 'index-yaml-latest-updates.html');
+  var outputFile = path.join(options.outputPath, '_shared', 'index-yaml-latest-updates.html');
+  renderTemplate(template, context, outputFile);
 }
 
 function generateTagPages(files, options) {

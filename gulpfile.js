@@ -80,6 +80,7 @@ gulp.task('clean', function() {
   var filesToDelete = [
     'test-results.json',
     'src/content/en/_shared/contributors/*',
+    'src/content/en/_shared/index-yaml-latest-updates.html',
     'src/content/**/rss.xml',
     'src/content/**/atom.xml',
     'src/content/**/_files.json',

@@ -1,0 +1,13 @@
+<div class="wf-updates">
+            {{#each articles}}
+            <div class="wf-updates-item">
+              {{#lt @index 2 }}
+              <a href="{{ url }}" class="gc-analytics-event" data-category="webFu" data-label="updates-article" data-action="web-home">
+                <img src="{{ image }}">
+              </a>
+              {{/lt}}
+              <h5><a href="{{ url }}" class="gc-analytics-event" data-category="webFu" data-label="updates-article" data-action="web-home">{{ title }}</a></h5>
+              <p>{{{description}}}</p>
+            </div>
+            {{/each}}
+          </div>
