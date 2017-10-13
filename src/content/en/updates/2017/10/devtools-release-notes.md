@@ -34,23 +34,9 @@ weeks.
 If you've ever tried debugging an app from an IDE like VS Code or WebStorm,
 you've probably discovered that opening DevTools messes up your debug session.
 This issue also made it impossible to use DevTools to debug WebDriver tests.
-See the video below for an example of the issue in VS Code.
-
-<div class="video-wrapper-full-width">
-  <iframe class="devsite-embedded-youtube-video" data-video-id="OJlOU6UecFU"
-          data-autohide="1" data-showinfo="0" frameborder="0" allowfullscreen>
-  </iframe>
-</div>
 
 As of Chrome 63, DevTools now supports multiple remote debugging clients
-by default, no configuration needed. Watch the video below to see an example
-of VS Code and DevTools in action, side-by-side.
-
-<div class="video-wrapper-full-width">
-  <iframe class="devsite-embedded-youtube-video" data-video-id="tTWs0ZyXI-0"
-          data-autohide="1" data-showinfo="0" frameborder="0" allowfullscreen>
-  </iframe>
-</div>
+by default, no configuration needed.
 
 Multi-client remote debugging was the [number 1 most-popular DevTools issue
 on Crbug][Crbug], and number 3 across the entire Chromium project.
@@ -85,7 +71,7 @@ CDS 2016 to see Workspaces 2.0 in action.
 
 <div class="video-wrapper-full-width">
   <iframe class="devsite-embedded-youtube-video" data-video-id="HF1luRD4Qmk"
-          data-autohide="1" data-showinfo="0" frameborder="0" 
+          data-autohide="1" data-showinfo="0" frameborder="0"
           data-start="868" allowfullscreen>
   </iframe>
 </div>
