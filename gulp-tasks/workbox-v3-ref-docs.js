@@ -42,7 +42,6 @@ const buildJSDocs = (srcCodePath, docOutputPath, jsdocConfPath) => {
     `basepath=${templateBasePath}`,
     `productName=${jsdocConfig.webFundamentals.productName}`,
   ].join('&');
-  console.log(`    QueryString: '--query ${queryString}'`);
 
   const jsDocParams = [
     '--template', path.join(
@@ -52,6 +51,8 @@ const buildJSDocs = (srcCodePath, docOutputPath, jsdocConfPath) => {
     '-d', docOutputPath,
     '--query', queryString,
   ];
+
+  console.log(`    JSDoc Params: `, jsDocParams);
 
   const jsdocPath = path.join(__dirname, '..', 'node_modules', 'jsdoc', 'jsdoc.js');
 

@@ -50,6 +50,66 @@
                       <td>
                         <p class="details-table-optional">Optional</p>
                         <p class="details-table-types">Object</p>
+                        <p>Values in <code>options</code> have the following properties:</p>
+                        <table class="function param responsive">
+                          <tr>
+                            <th colspan="2">
+                              <h4>Parameter</h4>
+                            </th>
+                          </tr>
+                          <tbody>
+                            <tr>
+                              <td class="details-table-name">
+                                <p>callbacks</p>
+                              </td>
+                              <td>
+                                <p class="details-table-optional">Optional</p>
+                                <p class="details-table-types">Object</p>
+                                <p>Callbacks to observe the lifecycle of queued requests. Use these to respond to or modify the requests during the replay process.</p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="details-table-name">
+                                <p>callbacks.requestWillEnqueue</p>
+                              </td>
+                              <td>
+                                <p class="details-table-optional">Optional</p>
+                                <p class="details-table-types">function(StorableRequest)</p>
+                                <p>Invoked immediately before the request is stored to IndexedDB. Use this callback to modify request data at store time.</p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="details-table-name">
+                                <p>callbacks.requestWillReplay</p>
+                              </td>
+                              <td>
+                                <p class="details-table-optional">Optional</p>
+                                <p class="details-table-types">function(StorableRequest)</p>
+                                <p>Invoked immediately before the request is re-fetched. Use this callback to modify request data at fetch time.</p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="details-table-name">
+                                <p>callbacks.queueDidReplay</p>
+                              </td>
+                              <td>
+                                <p class="details-table-optional">Optional</p>
+                                <p class="details-table-types">function(Array of StorableRequest)</p>
+                                <p>Invoked after all requests in the queue have successfully replayed.</p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="details-table-name">
+                                <p>maxRetentionTime</p>
+                              </td>
+                              <td>
+                                <p class="details-table-optional">Optional</p>
+                                <p class="details-table-types">number</p>
+                                <p>The amount of time (in ms) a request may be retried. After this amount of time has passed, the request will be deleted from the queue.</p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </td>
                     </tr>
                   </tbody>

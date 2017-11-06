@@ -53,6 +53,36 @@
                       </td>
                       <td>
                         <p class="details-table-types">Object</p>
+                        <p>Values in <code>options</code> have the following properties:</p>
+                        <table class="function param responsive">
+                          <tr>
+                            <th colspan="2">
+                              <h4>Parameter</h4>
+                            </th>
+                          </tr>
+                          <tbody>
+                            <tr>
+                              <td class="details-table-name">
+                                <p>blacklist</p>
+                              </td>
+                              <td>
+                                <p class="details-table-optional">Optional</p>
+                                <p class="details-table-types">Array of RegExp</p>
+                                <p>If any of these patterns match, the route will not handle the request (even if a whitelist entry matches).</p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="details-table-name">
+                                <p>whitelist</p>
+                              </td>
+                              <td>
+                                <p class="details-table-optional">Optional</p>
+                                <p class="details-table-types">Array of RegExp</p>
+                                <p>If any of these patterns match the URL's pathname and search parameter, the route will handle the request (assuming the blacklist doesn't match).</p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </td>
                     </tr>
                   </tbody>
@@ -84,6 +114,32 @@
                       </td>
                       <td>
                         <p class="details-table-types">Object</p>
+                        <p>Values in <code>input</code> have the following properties:</p>
+                        <table class="function param responsive">
+                          <tr>
+                            <th colspan="2">
+                              <h4>Parameter</h4>
+                            </th>
+                          </tr>
+                          <tbody>
+                            <tr>
+                              <td class="details-table-name">
+                                <p>event</p>
+                              </td>
+                              <td>
+                                <p class="details-table-types">FetchEvent</p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="details-table-name">
+                                <p>url</p>
+                              </td>
+                              <td>
+                                <p class="details-table-types">URL</p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </td>
                     </tr>
                   </tbody>
