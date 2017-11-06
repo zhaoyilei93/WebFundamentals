@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html devsite>
+
+<head>
+  <meta name="project_path" value="/web/tools/_project.yaml" />
+  <meta name="book_path" value="/web/tools/_book.yaml" />
+  <meta name="gtm_var" data-key="docType" data-value="reference">
+  <title>Module: workbox-webpack-plugin</title>
+  <link href="jsdoc.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1><small></small><span class="symbol-name">workbox-webpack-plugin</span></h1>
+            <div class="symbol-detail-labels"><span class="label label-kind"><small>module</small></span></div>
+            <p>Use the instance of this in the
+              <a href="https://webpack.js.org/concepts/plugins/#usage"><code>plugins</code> array</a> of a webpack config.</p>
+          </header>
+          <section>
+            <h2>Class</h2>
+            <section id='members-links'>
+              <h3 class="class-list"><a href="module-workbox-webpack-plugin-WorkboxWebpackPlugin.html">WorkboxWebpackPlugin</a></h3>
+              <p>Creates an instance of WorkboxWebpackPlugin.</p>
+            </section>
+            <h2>Methods</h2>
+            <section>
+              <h3 id=".generateManifestWithWebpack" class="symbol-name">generateManifestWithWebpack</h3>
+              <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
+              <p class="type-signature"> generateManifestWithWebpack(manifestEntries)&nbsp;returns&nbsp;Promise containing string</p>
+              <p>Generates a template string from an array of manifest entries that can be written to a manifest file.</p>
+              <section>
+                <table class="function param responsive">
+                  <tr>
+                    <th colspan="2">
+                      <h4>Parameter</h4>
+                    </th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>manifestEntries</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">Array of <a href="module-workbox-build.html#.ManifestEntry">module:workbox-build.ManifestEntry</a></p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>Promise containing string</code>&nbsp;service worker manifest file string</p>
+                </dd>
+              </dl>
+              <h3 id=".generateOrCopySW" class="symbol-name">generateOrCopySW</h3>
+              <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
+              <p class="type-signature"> generateOrCopySW(config, swSrc)&nbsp;returns&nbsp;Promise containing string</p>
+              <p>Generate a service worker using <a href="module-workbox-build.html#.generateSWString">module:workbox-build.generateSWString</a> or append <code>importScripts('workbox-sw.&lt;version&gt;.js', 'file-manifest.js')</code> to an existing service
+                worker if <code>swSrc</code> is specified</p>
+              <p>TODO: allow users to specify a webpack entry name to use as a service worker instead of just swSrc</p>
+              <section>
+                <table class="function param responsive">
+                  <tr>
+                    <th colspan="2">
+                      <h4>Parameter</h4>
+                    </th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>config</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">Object</p>
+                        <p>Configuration to pass through to
+                          <a href="module-workbox-build.html#.generateSWString">module:workbox-build.generateSWString</a>.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>swSrc</p>
+                      </td>
+                      <td>
+                        <p class="details-table-optional">Optional</p>
+                        <p class="details-table-types">string</p>
+                        <p>The path to existing service worker.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>Promise containing string</code>&nbsp;The generated service worker string.</p>
+                </dd>
+              </dl>
+              <h3 id=".getManifestEntriesWithWebpack" class="symbol-name">getManifestEntriesWithWebpack</h3>
+              <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
+              <p class="type-signature"> getManifestEntriesWithWebpack(compiler, compilation, config)&nbsp;returns&nbsp;Array of <a href="module-workbox-build.html#.ManifestEntry">module:workbox-build.ManifestEntry</a></p>
+              <p>Generate an array of manifest entries using webpack's compilation data</p>
+              <p>TODO: Rename variables so they are easier to understand: https://github.com/GoogleChrome/workbox/pull/808#discussion_r139605624 https://github.com/GoogleChrome/workbox/pull/808#discussion_r139605973 If an asset is already using some kind
+                of build hash, do not use the revision parameter in <code>entry()</code>: https://github.com/GoogleChrome/workbox/pull/808#discussion_r140584483
+              </p>
+              <section>
+                <table class="function param responsive">
+                  <tr>
+                    <th colspan="2">
+                      <h4>Parameter</h4>
+                    </th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>compiler</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">Object</p>
+                        <p>webpack compiler</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>compilation</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">Object</p>
+                        <p>webpack compilation</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>config</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">module:workbox-webpack-plugin.Configuration</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>Array of <a href="module-workbox-build.html#.ManifestEntry">module:workbox-build.ManifestEntry</a></code>&nbsp;</p>
+                </dd>
+              </dl>
+              <h3 id=".resolveWebpackUrl" class="symbol-name">resolveWebpackUrl</h3>
+              <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
+              <p class="type-signature"> resolveWebpackUrl(paths)&nbsp;returns&nbsp;string</p>
+              <p>Resolves a url in the way that webpack would (with string concatenation)</p>
+              <p>Use publicPath + filePath instead of url.resolve(publicPath, filePath) see: https://webpack.js.org/configuration/output/#output-publicpath
+              </p>
+              <section>
+                <table class="function param responsive">
+                  <tr>
+                    <th colspan="2">
+                      <h4>Parameter</h4>
+                    </th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>paths</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">Array of string</p>
+                        <p>File paths to join</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>string</code>&nbsp;Joined file path</p>
+                </dd>
+              </dl>
+              <h3 id=".webpackAsset" class="symbol-name">webpackAsset</h3>
+              <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
+              <p class="type-signature"> webpackAsset(asset)&nbsp;returns&nbsp;WebpackAsset</p>
+              <p>Creates a webpack asset from a string that can be added to a compilation.</p>
+              <p>Given a string (<code>asset</code>) we can return a webpack compilation asset object that can be added to the map of webpack's compilation assets.</p>
+              <section>
+                <table class="function param responsive">
+                  <tr>
+                    <th colspan="2">
+                      <h4>Parameter</h4>
+                    </th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>asset</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">string</p>
+                        <p>String representation of the asset that should be written to the file system by webpack.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>WebpackAsset</code>&nbsp;</p>
+                </dd>
+              </dl>
+            </section>
+            <h2>Abstract type</h2>
+            <section>
+              <h3 id=".WebpackAsset" class="symbol-name">WebpackAsset</h3>
+              <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
+              <p class="type-signature">Object</p>
+              <p>In webpack jargon: a compilation object represents a build of versioned
+                <code>assets</code>. The <code>compilation.assets</code> property of a compilation is a map of filepaths -&gt; asset objects. Each asset object has a property <code>source()</code> that returns a string of that asset.</p>
+              <p><code>source</code> and <code>size</code> are the only required properties of a webpack asset.</p>
+              <section>
+                <h4>Properties</h4>
+                <table class="function param responsive">
+                  <tr>
+                    <th colspan="2">
+                      <h4>Parameter</h4>
+                    </th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>source</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">function()</p>
+                        <p>Returns a string representation of the asset that will be written to the file system (or generated in-memory) by webpack.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>size</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">function()</p>
+                        <p>Returns the byte size of the asset <code>source</code> value.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+            </section>
+          </section>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+</body>
+
+</html>

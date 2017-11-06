@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html devsite>
+
+<head>
+  <meta name="project_path" value="/web/tools/_project.yaml" />
+  <meta name="book_path" value="/web/tools/_book.yaml" />
+  <meta name="gtm_var" data-key="docType" data-value="reference">
+  <title>Class: RegExpRoute</title>
+  <link href="jsdoc.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1><small><a href="module-workbox-routing.html">workbox-routing</a>.<wbr></small><span class="symbol-name">RegExpRoute</span></h1>
+            <div class="symbol-detail-labels"><span class="label label-kind"><small>class</small></span>&nbsp;&nbsp;&nbsp;<span class="label label-static"><small>static</small></span></div>
+            <p>RegExpRoute is a helper class to make defining regular expression based
+              <a href="module-workbox-routing.Route.html">Routes</a> easy.</p>
+            <p>Please note that this only needs to match any part of the URL for same-origin requests. For requests against third-party servers, you must define a RegExp that matches the start of the URL.</p>
+            <p>For example,</p>
+            <pre class="prettyprint source"><code>// Matches all local styles
+new RegExpRoute(new RegExp('/styles/'), ...);</code></pre>
+            <p>while</p>
+            <pre class="prettyprint source lang-js"><code> // Matches third-party styles
+new RegexpRoute(new RegExp('https://example\.com/styles/'), ...);</code></pre>
+          </header>
+          <section>
+            <h2>Constructor</h2>
+            <section>
+              <h3 id="RegExpRoute" class="symbol-name">RegExpRoute</h3>
+              <p class="type-signature"> new RegExpRoute(regExp, handler, method)</p>
+              <p>If the <code>RegExp</code> associated with this route contains
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp#grouping-back-references">capture groups</a>, then the array of captured values will be passed to <code>handler</code> as <code>params</code>.</p>
+              <section>
+                <table class="function param responsive">
+                  <tr>
+                    <th colspan="2">
+                      <h4>Parameter</h4>
+                    </th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>regExp</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">RegExp</p>
+                        <p>The regular expression to match against URLs.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>handler</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types"><a href="module-workbox-routing.Route.html#~handlerCallback">module:workbox-routing.Route~handlerCallback</a></p>
+                        <p>The callback function that will provide the response for matching requests.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>method</p>
+                      </td>
+                      <td>
+                        <p class="details-table-optional">Optional</p>
+                        <p class="details-table-types">string</p>
+                        <p>Restrict the route to only match requests that use this HTTP method.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+                <dt>Extends</dt>
+                <dd><small>Route</small></dd>
+              </dl>
+            </section>
+          </section>
+          <section>
+          </section>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+</body>
+
+</html>

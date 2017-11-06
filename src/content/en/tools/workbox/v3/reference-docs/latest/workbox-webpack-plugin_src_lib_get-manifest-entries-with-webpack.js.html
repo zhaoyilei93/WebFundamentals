@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html devsite>
+
+<head>
+  <meta name="project_path" value="/web/tools/_project.yaml" />
+  <meta name="book_path" value="/web/tools/_book.yaml" />
+  <meta name="gtm_var" data-key="docType" data-value="reference">
+  <title>Source: workbox-webpack-plugin/src/lib/get-manifest-entries-with-webpack.js</title>
+  <link href="jsdoc.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-banner" role="banner">
+        </div>
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1>Source: workbox-webpack-plugin/src/lib/get-manifest-entries-with-webpack.js</h1>
+          </header>
+          <article>
+            <pre class="prettyprint linenums"><code>/*
+  Copyright 2017 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/
+
+const resolveWebpackUrl &#x3D; require(&#x27;./utils/resolve-webpack-url&#x27;);
+
+/**
+ * A single manifest entry that workbox-sw can precache.
+ *
+ * @param {string} url webpack asset url path
+ * @param {string} [revision] A revision hash for the entry
+ * @return {module:workbox-build.ManifestEntry} A single manifest entry
+ *
+ * @private
+ */
+function getEntry(url, revision) {
+  return revision ? {url, revision} : {url};
+}
+
+/**
+ * Filter to narrow down the asset list to chunks that:
+ * - have a name.
+ * - if there&#x27;s a whitelist, the chunk&#x27;s name is in the whitelist.
+ * - if there&#x27;s a blacklist, the chunk&#x27;s name is not in the blacklist.
+ *
+ * TODO:
+ *  Filter files by size:
+ *    https://github.com/GoogleChrome/workbox/pull/808#discussion_r139606242
+ *  Filter files that match &#x60;staticFileGlobsIgnorePatterns&#x60; (or something)
+ *  but filter for [/\.map$/, /asset-manifest\.json$/] by default:
+ *    https://github.com/GoogleChrome/workbox/pull/808#discussion_r140565156
+ *
+ * @param {Array&amp;lt;Object&gt;} chunks webpack chunks.
+ * @param {Array&amp;lt;string&gt;} [whitelist] Chunk names to include.
+ * @param {Array&amp;lt;string&gt;} [blacklist] Chunk names to exclude.
+ * @return {Array&amp;lt;Object&gt;} Filtered array of chunks.
+ *
+ * @private
+ */
+function filterChunks(chunks, whitelist, blacklist) {
+  return chunks.filter((chunk) &#x3D;&gt; {
+    return &#x27;name&#x27; in chunk &amp;amp;&amp;amp;
+      (!whitelist || whitelist.includes(chunk.name)) &amp;amp;&amp;amp;
+      (!blacklist || !blacklist.includes(chunk.name));
+  });
+}
+
+/**
+ * Maps webpack asset filenames to their chunk hash.
+ *
+ * TODO:
+ *   Elaborate on this function description:
+ *      https://github.com/GoogleChrome/workbox/pull/808#discussion_r139605066
+ *
+ * @param {Array&amp;lt;Object&gt;} chunks webpack chunks
+ * @return {Object} {filename: hash} map
+ *
+ * @private
+ */
+function mapAssetsToChunkHash(chunks) {
+  return chunks.reduce((assetMap, chunk) &#x3D;&gt; {
+    return Object.assign(
+      assetMap,
+      ...chunk.files.map((f) &#x3D;&gt; ({[f]: chunk.renderedHash}))
+    );
+  }, {});
+}
+
+/**
+ * Generate an array of manifest entries using webpack&#x27;s compilation data
+ *
+ * TODO:
+ *   Rename variables so they are easier to understand:
+ *      https://github.com/GoogleChrome/workbox/pull/808#discussion_r139605624
+ *      https://github.com/GoogleChrome/workbox/pull/808#discussion_r139605973
+ *   If an asset is already using some kind of build hash, do not use the
+ *   revision parameter in &#x60;entry()&#x60;:
+ *      https://github.com/GoogleChrome/workbox/pull/808#discussion_r140584483
+ *
+ * @function getManifestEntriesWithWebpack
+ * @param {Object} compiler webpack compiler
+ * @param {Object} compilation webpack compilation
+ * @param {module:workbox-webpack-plugin.Configuration} config
+ * @return {Array&amp;lt;module:workbox-build.ManifestEntry&gt;}
+ *
+ * @memberof module:workbox-webpack-plugin
+ */
+module.exports &#x3D; (compiler, compilation, config) &#x3D;&gt; {
+  const {publicPath} &#x3D; compilation.options.output;
+
+  // Array&amp;lt;string&gt; | undefined
+  const whitelist &#x3D; config.chunks;
+  const blacklist &#x3D; config.excludeChunks;
+
+  // Array&amp;lt;{files: Array&amp;lt;(filename: string)&gt;, name?: string}&gt;
+  let {chunks} &#x3D; compilation;
+
+  if (whitelist || blacklist) {
+    // Only include chunks in config.chunks and
+    // exclude any chunks in config.excludeChunks
+    chunks &#x3D; filterChunks(chunks, whitelist, blacklist);
+  }
+
+  // Use chunkhash to save a chunk hash to each filename in chunks
+  const assetsToChunkHash &#x3D; mapAssetsToChunkHash(chunks);
+
+  /**
+   * Files that will be used to generate the manifest entries
+   *
+   * If config.chunks is specifed, we only use files that belong to named chunks
+   * otherwise we use all of webpack&#x27;s compilation.assets.
+   *
+   * @type {Array&amp;lt;string&gt;}
+   */
+  const manifestFiles &#x3D; whitelist
+    ? Object.keys(assetsToChunkHash)
+    : Object.keys(compilation.assets);
+
+  // Create and return the manifest entries.
+  return manifestFiles.map((filePath) &#x3D;&gt; {
+    return getEntry(resolveWebpackUrl(publicPath, filePath),
+      // Use chunkhash if available, otherwise use compilation hash.
+      assetsToChunkHash[filePath] || compilation.hash);
+  });
+};
+</code></pre>
+          </article>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+</body>
+
+</html>

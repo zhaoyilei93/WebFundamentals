@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html devsite>
+
+<head>
+  <meta name="project_path" value="/web/tools/_project.yaml" />
+  <meta name="book_path" value="/web/tools/_book.yaml" />
+  <meta name="gtm_var" data-key="docType" data-value="reference">
+  <title>Module: workbox-routing</title>
+  <link href="jsdoc.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1><small></small><span class="symbol-name">workbox-routing</span></h1>
+            <div class="symbol-detail-labels"><span class="label label-kind"><small>module</small></span></div>
+          </header>
+          <section>
+            <h2>Classes</h2>
+            <section id='members-links'>
+              <h3 class="class-list"><a href="module-workbox-routing.NavigationRoute.html">NavigationRoute</a></h3>
+              <p>NavigationRoute is a helper class to create a <a href="module-workbox-routing.Route.html">Route</a> that matches for browser navigation requests, i.e. requests for HTML pages.</p>
+              <p>It will only match incoming requests whose <a href="https://fetch.spec.whatwg.org/#concept-request-mode"><code>mode</code></a> is set to <code>navigate</code>.</p>
+              <p>You can optionally only apply this route to a subset of navigation requests by using one or both of the <code>blacklist</code> and <code>whitelist</code> parameters. If both lists are provided, the blacklist will take precedence and the
+                request will not be matched by this route.</p>
+              <p>The regular expressions in <code>whitelist</code> and <code>blacklist</code> are matched against the concatenated
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/pathname"><code>pathname</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/search"><code>search</code></a>                portions of the requested URL.</p>
+              <h3 class="class-list"><a href="module-workbox-routing.RegExpRoute.html">RegExpRoute</a></h3>
+              <p>RegExpRoute is a helper class to make defining regular expression based
+                <a href="module-workbox-routing.Route.html">Routes</a> easy.</p>
+              <p>Please note that this only needs to match any part of the URL for same-origin requests. For requests against third-party servers, you must define a RegExp that matches the start of the URL.</p>
+              <p>For example,</p>
+              <pre class="prettyprint source"><code>// Matches all local styles
+new RegExpRoute(new RegExp('/styles/'), ...);</code></pre>
+              <p>while</p>
+              <pre class="prettyprint source lang-js"><code> // Matches third-party styles
+new RegexpRoute(new RegExp('https://example\.com/styles/'), ...);</code></pre>
+              <h3 class="class-list"><a href="module-workbox-routing.Route.html">Route</a></h3>
+              <p>A <code>Route</code> consists or a matcher and a handler. A matcher needs to determine if a route should be used for a request. A handler returns a response to the request if there's a match.</p>
+              <h3 class="class-list"><a href="module-workbox-routing.Router.html">Router</a></h3>
+              <p>The Router takes one or more Routes and passes each fetch event through it's routing logic to determine the appropriate way to respond with a Request.</p>
+              <p>If no route matches a given a request, the Router will use a &quot;default&quot; handler if one is defined.</p>
+              <p>Should any of the Route's throw an error, you can define a &quot;catch&quot; handler to gracefully deal with these issues and respond with a Request.</p>
+              <p>If a request matches multiple routes, precedence will be given to the
+                <strong>earliest</strong> registered route.</p>
+            </section>
+            <h2>Methods</h2>
+            <section>
+              <h3 id=".registerRoute" class="symbol-name">registerRoute</h3>
+              <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
+              <p class="type-signature"> registerRoute(capture, handler, method)&nbsp;returns&nbsp;Route</p>
+              <p>This is helper method that will generate and register a Route object from the provided <code>capture</code> and <code>handler</code> arguments.</p>
+              <p><a href="module-workbox-routing.Router.html#registerRoute">See Router.registerRoute() for more info</a>.</p>
+              <section>
+                <table class="function param responsive">
+                  <tr>
+                    <th colspan="2">
+                      <h4>Parameter</h4>
+                    </th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>capture</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">(RegExp, matchCallback, or Route)</p>
+                        <p>If the capture param is a <code>Route</code>, all other arguments will be ignored.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>handler</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">workbox-route.Route~handlerCallback</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>method</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">string</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>Route</code>&nbsp;Returns the generated Route.</p>
+                </dd>
+              </dl>
+              <h3 id=".setCatchHandler" class="symbol-name">setCatchHandler</h3>
+              <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
+              <p class="type-signature"> setCatchHandler()</p>
+              <p><a href="module-workbox-routing.Router.html#setCatchHandler">See Router.setCatchHandler()</a></p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id=".setDefaultHandler" class="symbol-name">setDefaultHandler</h3>
+              <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
+              <p class="type-signature"> setDefaultHandler()</p>
+              <p><a href="module-workbox-routing.Router.html#setDefaultHandler">See Router.setDefaultHandler()</a></p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id=".unregisterRoute" class="symbol-name">unregisterRoute</h3>
+              <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
+              <p class="type-signature"> unregisterRoute()</p>
+              <p><a href="module-workbox-routing.Router.html#unregisterRoute">See Router.unregisterRoute()</a></p>
+              <dl class="dl-compact">
+              </dl>
+            </section>
+          </section>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -23,3 +23,19 @@ toc:
 - title: Github
   path: https://github.com/GoogleChrome/workbox
   status: external
+- title: V3 (Alpha)
+  section:
+  - title: Guides
+    section:
+    - title: "How to configure Workbox"
+      path: /web/tools/workbox/v3/guides/how-to-configure-workbox
+  - title: Modules
+    section:
+    - title: workbox-core
+      path: /web/tools/workbox/v3/modules/workbox-core
+  - title: Reference Docs
+    section:
+    - title: "workbox-core"
+      path: /web/tools/workbox/v3/reference-docs/latest/module-workbox-core
+    - title: "View Full API"
+      path: /web/tools/workbox/v3/reference-docs/latest/index-all

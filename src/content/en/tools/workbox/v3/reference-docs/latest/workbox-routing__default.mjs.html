@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html devsite>
+
+<head>
+  <meta name="project_path" value="/web/tools/_project.yaml" />
+  <meta name="book_path" value="/web/tools/_book.yaml" />
+  <meta name="gtm_var" data-key="docType" data-value="reference">
+  <title>Source: workbox-routing/_default.mjs</title>
+  <link href="jsdoc.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-banner" role="banner">
+        </div>
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1>Source: workbox-routing/_default.mjs</h1>
+          </header>
+          <article>
+            <pre class="prettyprint linenums"><code>/*
+  Copyright 2017 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/
+
+import {assert, WorkboxError, cacheNames} from &#x27;workbox-core/_private.mjs&#x27;;
+import {Router} from &#x27;./Router.mjs&#x27;;
+import {Route} from &#x27;./Route.mjs&#x27;;
+import {RegExpRoute} from &#x27;./RegExpRoute.mjs&#x27;;
+import {NavigationRoute} from &#x27;./NavigationRoute.mjs&#x27;;
+import &#x27;./_version.mjs&#x27;;
+
+if (process.env.NODE_ENV !&#x3D;&#x3D; &#x27;production&#x27;) {
+  assert.isSwEnv(&#x27;workbox-routing&#x27;);
+}
+
+/**
+ * [See Router.setDefaultHandler()]{@link
+ * module:workbox-routing.Router#setDefaultHandler}
+ *
+ * @function
+ * @name module:workbox-routing.setDefaultHandler
+ */
+
+/**
+ * [See Router.setCatchHandler()]{@link
+ * module:workbox-routing.Router#setCatchHandler}
+ *
+ * @function
+ * @name module:workbox-routing.setCatchHandler
+ */
+
+/**
+ * [See Router.unregisterRoute()]{@link
+ * module:workbox-routing.Router#unregisterRoute}
+ *
+ * @function
+ * @name module:workbox-routing.unregisterRoute
+ */
+
+/**
+ * @private
+ */
+class DefaultRouter extends Router {
+  /**
+   * This is helper method that will generate and register a Route object
+   * from the provided &#x60;capture&#x60; and &#x60;handler&#x60; arguments.
+   *
+   * [See Router.registerRoute() for more info]{@link
+   * module:workbox-routing.Router#registerRoute}.
+   *
+   * @param {RegExp|matchCallback|Route} capture If the capture param
+   * is a &#x60;Route&#x60;, all other arguments will be ignored.
+   * @param {workbox-route.Route~handlerCallback} handler
+   * @param {string} method
+   * @return {Route} Returns the generated Route.
+   *
+   * @alias module:workbox-routing.registerRoute
+   */
+  registerRoute(capture, handler, method &#x3D; &#x27;GET&#x27;) {
+    let route;
+    // TODO Should we allow Express Route?
+    // TODO If so - don&#x27;t forget to add &#x27;string&#x27; to params in jsdoc.
+    /** if (typeof capture &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+      if (capture.length &#x3D;&#x3D;&#x3D; 0) {
+        throw new WorkboxError(&#x27;empty-express-string&#x27;, {
+          moduleName: &#x27;workbox-routing&#x27;,
+          class: &#x27;DefaultRouter&#x27;,
+          func: &#x27;registerRoute&#x27;,
+          paramName: &#x27;capture&#x27;,
+        });
+      }
+      route &#x3D; new ExpressRoute(capture, handler, method);
+    } **/
+    if (capture instanceof RegExp) {
+      route &#x3D; new RegExpRoute(capture, handler, method);
+    } else if (typeof capture &#x3D;&#x3D;&#x3D; &#x27;function&#x27;) {
+      route &#x3D; new Route(capture, handler, method);
+    } else if (capture instanceof Route) {
+      route &#x3D; capture;
+    } else {
+      throw new WorkboxError(&#x27;unsupported-route-type&#x27;, {
+        moduleName: &#x27;workbox-routing&#x27;,
+        className: &#x27;DefaultRouter&#x27;,
+        funcName: &#x27;registerRoute&#x27;,
+        paramName: &#x27;capture&#x27;,
+      });
+    }
+
+    super.registerRoute(route);
+    return route;
+  }
+
+  /**
+   * A helper method that will register a NavigationRoute that will respond
+   * to navigation requests with a cached URL.
+   *
+   * @param {string} cachedAssetUrl
+   * @param {Object} options
+   * @param {string} options.cacheName Cache name to store and retrieve
+   * requests. Defaults to precache cache name provided by &#x60;workbox-core&#x60;.
+   * @param {Array&amp;lt;RegExp&gt;} [options.blacklist] If any of these patterns match,
+   * the route will not handle the request (even if a whitelist entry matches).
+   * @param {Array&amp;lt;RegExp&gt;} [options.whitelist&#x3D;[/./]] If any of these patterns
+   * match the URL&#x27;s pathname and search parameter, the route will handle the
+   * request (assuming the blacklist doesn&#x27;t match).
+   * @return {NavigationRoute} Returns the generated Route.
+   */
+  registerNavigationRoute(cachedAssetUrl, options &#x3D; {}) {
+    if (process.env.NODE_ENV !&#x3D;&#x3D; &#x27;production&#x27;) {
+      assert.isType(cachedAssetUrl, &#x27;string&#x27;, {
+        moduleName: &#x27;workbox-routing&#x27;,
+        className: &#x27;[default export]&#x27;,
+        funcName: &#x27;registerNavigationRoute&#x27;,
+        paramName: &#x27;cachedAssetUrl&#x27;,
+      });
+    }
+
+    const cacheName &#x3D; cacheNames.getPrecacheName(options.cacheName);
+    const handler &#x3D; () &#x3D;&gt; caches.match(cachedAssetUrl, {cacheName});
+    const route &#x3D; new NavigationRoute(handler, {
+      whitelist: options.whitelist,
+      blacklist: options.blacklist,
+    });
+    super.registerRoute(
+      route
+    );
+    return route;
+  }
+}
+
+const router &#x3D; new DefaultRouter();
+
+// By default, register a fetch event listener that will respond to a request
+// only if there&#x27;s a matching route.
+self.addEventListener(&#x27;fetch&#x27;, (event) &#x3D;&gt; {
+  const responsePromise &#x3D; router.handleRequest(event);
+  if (responsePromise) {
+    event.respondWith(responsePromise);
+  }
+});
+
+// TODO Register Navigation Route
+
+export default router;
+</code></pre>
+          </article>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+</body>
+
+</html>

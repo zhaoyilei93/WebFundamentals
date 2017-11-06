@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html devsite>
+
+<head>
+  <meta name="project_path" value="/web/tools/_project.yaml" />
+  <meta name="book_path" value="/web/tools/_book.yaml" />
+  <meta name="gtm_var" data-key="docType" data-value="reference">
+  <title>Source: workbox-precaching/models/PrecachedDetailsModel.mjs</title>
+  <link href="jsdoc.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-banner" role="banner">
+        </div>
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1>Source: workbox-precaching/models/PrecachedDetailsModel.mjs</h1>
+          </header>
+          <article>
+            <pre class="prettyprint linenums"><code>/*
+  Copyright 2017 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/
+
+import {DBWrapper, cacheNames} from &#x27;workbox-core/_private.mjs&#x27;;
+import &#x27;../_version.mjs&#x27;;
+
+// Allows minifier to mangle this name
+const REVISON_IDB_FIELD &#x3D; &#x27;revision&#x27;;
+const URL_IDB_FIELD &#x3D; &#x27;url&#x27;;
+const DB_STORE_NAME &#x3D; &#x27;precached-details-models&#x27;;
+/**
+ * This model will track the relevant information of entries that
+ * are cached and their matching revision details.
+ *
+ * @private
+ * @memberof module:workbox-precaching
+ */
+class PrecachedDetailsModel {
+  /**
+   * Construct a new model for a specific cache.
+   *
+   * @private
+   * @param {string} cacheName
+   */
+  constructor(cacheName) {
+    this._cacheName &#x3D; cacheNames.getPrecacheName(cacheName);
+    this._db &#x3D; new DBWrapper(&#x60;workbox-precaching&#x60;, 1, {
+      onupgradeneeded: (evt) &#x3D;&gt; {
+        evt.target.result.createObjectStore(DB_STORE_NAME);
+      },
+    });
+  }
+
+  /**
+   * Check if an entry is already cached. Returns false if
+   * the entry isn&#x27;t cached or the revision has changed.
+   *
+   * @param {PrecacheEntry} precacheEntry
+   * @return {boolean}
+   */
+  async _isEntryCached(precacheEntry) {
+    const revisionDetails &#x3D; await this._getRevision(precacheEntry._entryId);
+    if (revisionDetails !&#x3D;&#x3D; precacheEntry._revision) {
+      return false;
+    }
+
+    const openCache &#x3D; await caches.open(this._cacheName);
+    const cachedResponse &#x3D; await openCache.match(precacheEntry._cacheRequest);
+    return !!cachedResponse;
+  }
+
+  /**
+   * @return {Promise&amp;lt;Array&gt;}
+   */
+  async _getAllEntries() {
+    return await this._db.getAll(DB_STORE_NAME);
+  }
+
+  /**
+   * Get the current revision details.
+   *
+   * @param {Object} entryId
+   * @return {Promise&amp;lt;string|null&gt;}
+   */
+  async _getRevision(entryId) {
+    const data &#x3D; await this._db.get(DB_STORE_NAME, entryId);
+    return data ? data[REVISON_IDB_FIELD] : null;
+  }
+
+  /**
+   * Add an entry to the details model.
+   *
+   * @param {PrecacheEntry} precacheEntry
+   */
+  async _addEntry(precacheEntry) {
+    await this._db.put(
+      DB_STORE_NAME,
+      {
+        [REVISON_IDB_FIELD]: precacheEntry._revision,
+        [URL_IDB_FIELD]: precacheEntry._cacheRequest.url,
+      },
+      precacheEntry._entryId
+    );
+  }
+
+  /**
+   * Delete entry from details model.
+   *
+   * @param {string} entryId
+   */
+  async _deleteEntry(entryId) {
+    await this._db.delete(DB_STORE_NAME, entryId);
+  }
+}
+
+export default PrecachedDetailsModel;
+</code></pre>
+          </article>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html devsite>
+
+<head>
+  <meta name="project_path" value="/web/tools/_project.yaml" />
+  <meta name="book_path" value="/web/tools/_book.yaml" />
+  <meta name="gtm_var" data-key="docType" data-value="reference">
+  <title>Source: workbox-routing/Route.mjs</title>
+  <link href="jsdoc.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-banner" role="banner">
+        </div>
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1>Source: workbox-routing/Route.mjs</h1>
+          </header>
+          <article>
+            <pre class="prettyprint linenums"><code>/*
+ Copyright 2017 Google Inc. All Rights Reserved.
+ Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
+
+import {assert} from &#x27;workbox-core/_private.mjs&#x27;;
+
+import {defaultMethod, validMethods} from &#x27;./utils/constants.mjs&#x27;;
+import normalizeHandler from &#x27;./utils/normalizeHandler.mjs&#x27;;
+import &#x27;./_version.mjs&#x27;;
+
+/**
+ * The &#x60;match&#x60; callback is used to determine if a new service worker &#x60;fetch&#x60;
+ * event should be handled this &#x60;Route&#x60;. Returning a truthy value means
+ * this &#x60;Route&#x60; will handle and respond to this &#x60;fetch&#x60; event.
+ *
+ * Return &#x60;null&#x60; if this Route shouldn&#x27;t match against the &#x60;fetch&#x60; event.
+ *
+ * Any truthy value returned by this callback will be passed to the
+ * Route&#x27;s &#x60;handler&#x60; callback.
+ *
+ * This callback is passed into the
+ * [Route Constructor]{@link module:workbox-routing.Route}.
+ *
+ * @callback Route~matchCallback
+ * @param {Object} context
+ * @param {URL} context.url The request&#x27;s URL.
+ * @param {FetchEvent} context.event The event that triggered the &#x60;fetch&#x60;
+ * handler.
+ * @return {Object|null} To signify a match, return anything other than &#x60;null&#x60;.
+ * Return &#x60;null&#x60; if the route shouldn&#x27;t match. If you return an Object with
+ * contents, it will be passed to the Route&#x27;s
+ * [handler]{@link module:workbox-routing.Route~handlerCallback}.
+ *
+ * @memberof module:workbox-routing
+ */
+
+/**
+ * The &#x60;handler&#x60; callback is called when a new service worker &#x60;fetch&#x60; event
+ * has been matched by a &#x60;Route&#x60;. This callback should return a Promise that
+ * resolves with a &#x60;Response&#x60;.
+ *
+ * If a value is returned by the &#x60;match&#x60; callback it will be passed in
+ * as the &#x60;params&#x60; argument of this callback.
+ *
+ * This callback is passed into the
+ * [Route Constructor]{@link module:workbox-routing.Route}.
+ *
+ * @callback Route~handlerCallback
+ * @param {Object} context
+ * @param {URL} context.url The request&#x27;s URL.
+ * @param {FetchEvent} context.event The event that triggered the &#x60;fetch&#x60;
+ * handler.
+ * @param {Object} [context.params] Parameters returned by the Route&#x27;s
+ * [match callback]{@link module:workbox-routing.Route~matchCallback} function.
+ * This will be undefined if nothing was returned.
+ * @return {Promise&amp;lt;Response&gt;} The response that will fulfill the request.
+ *
+ * @memberof module:workbox-routing
+ */
+
+/**
+ * A &#x60;Route&#x60; consists or a matcher and a handler. A matcher needs to determine
+ * if a route should be used for a request. A handler returns a response
+ * to the request if there&#x27;s a match.
+ *
+ * @memberof module:workbox-routing
+ */
+class Route {
+  /**
+   * Constructor for Route class.
+   *
+   * @param {module:workbox-routing.Route~matchCallback} match
+   * A callback function that determines whether the route matches a given
+   * &#x60;fetch&#x60; event.
+   * @param {
+   *   module:workbox-routing.Route~handlerCallback |
+   *   module:workbox-runtime-caching.Handler
+   * } handler This parameter can be either a callback function or an object
+   * which implements the &#x60;Handler&#x60; interface.
+   * @param {string} [method&#x3D;&#x27;GET&#x27;] Restrict the route to only match requests
+   * that use this HTTP method.
+   */
+  constructor(match, handler, method) {
+    if (process.env.NODE_ENV !&#x3D;&#x3D; &#x27;production&#x27;) {
+      assert.isType(match, &#x27;function&#x27;, {
+        moduleName: &#x27;workbox-routing&#x27;,
+        className: &#x27;Route&#x27;,
+        funcName: &#x27;constructor&#x27;,
+        paramName: &#x27;match&#x27;,
+      });
+
+      if (method) {
+        assert.isOneOf(method, validMethods, {paramName: &#x27;method&#x27;});
+      }
+    }
+
+    // These values are referenced directly by Router so cannot be
+    // altered by minifification.
+    this.handler &#x3D; normalizeHandler(handler);
+    this.match &#x3D; match;
+    this.method &#x3D; method || defaultMethod;
+  }
+}
+
+export {Route};
+</code></pre>
+          </article>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+</body>
+
+</html>

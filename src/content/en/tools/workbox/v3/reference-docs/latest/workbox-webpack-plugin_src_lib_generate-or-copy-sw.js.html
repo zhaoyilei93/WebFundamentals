@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html devsite>
+
+<head>
+  <meta name="project_path" value="/web/tools/_project.yaml" />
+  <meta name="book_path" value="/web/tools/_book.yaml" />
+  <meta name="gtm_var" data-key="docType" data-value="reference">
+  <title>Source: workbox-webpack-plugin/src/lib/generate-or-copy-sw.js</title>
+  <link href="jsdoc.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-banner" role="banner">
+        </div>
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1>Source: workbox-webpack-plugin/src/lib/generate-or-copy-sw.js</h1>
+          </header>
+          <article>
+            <pre class="prettyprint linenums"><code>/*
+  Copyright 2017 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/
+
+const {generateSWString} &#x3D; require(&#x27;workbox-build&#x27;);
+const {readFile} &#x3D; require(&#x27;./utils/read-file&#x27;);
+
+/**
+ * Generate a service worker using {@link module:workbox-build.generateSWString}
+ * or append &#x60;importScripts(&#x27;workbox-sw.&amp;lt;version&gt;.js&#x27;, &#x27;file-manifest.js&#x27;)&#x60; to
+ * an existing service worker if &#x60;swSrc&#x60; is specified
+ *
+ * TODO:
+ *    allow users to specify a webpack entry name to use as a service worker
+ *    instead of just swSrc
+ *
+ * @function generateOrCopySW
+ * @param {Object} config Configuration to pass through to
+ * {@link module:workbox-build.generateSWString}.
+ * @param {string} [swSrc] The path to existing service worker.
+ * @return {Promise&amp;lt;string&gt;} The generated service worker string.
+ *
+ * @memberof module:workbox-webpack-plugin
+ */
+module.exports &#x3D; async (config, swSrc) &#x3D;&gt; {
+  if (!swSrc) {
+    // use workbox-build to generate the service worker
+    return generateSWString(config);
+  } else {
+    const serviceWorkerSource &#x3D; await readFile(swSrc);
+    const scripts &#x3D; config.importScripts
+      .map((script) &#x3D;&gt; &#x60;&#x27;${script}&#x27;&#x60;)
+      .join(&#x27;, &#x27;);
+    return &#x60;importScripts(${scripts});\n${serviceWorkerSource}&#x60;;
+  }
+};
+</code></pre>
+          </article>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+</body>
+
+</html>

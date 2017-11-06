@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html devsite>
+
+<head>
+  <meta name="project_path" value="/web/tools/_project.yaml" />
+  <meta name="book_path" value="/web/tools/_book.yaml" />
+  <meta name="gtm_var" data-key="docType" data-value="reference">
+  <title>Module: workbox-runtime-caching</title>
+  <link href="jsdoc.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1><small></small><span class="symbol-name">workbox-runtime-caching</span></h1>
+            <div class="symbol-detail-labels"><span class="label label-kind"><small>module</small></span></div>
+            <p>There are common caching strategies that most service workers will need and use. This module provides simple implementations of these strategies.</p>
+          </header>
+          <section>
+            <h2>Classes</h2>
+            <section id='members-links'>
+              <h3 class="class-list"><a href="module-workbox-runtime-caching.CacheFirst.html">CacheFirst</a></h3>
+              <p>An implementation of a <a href="/web/fundamentals/instant-and-offline/offline-cookbook/#cache-falling-back-to-network">cache-first</a> request strategy.</p>
+              <p>A cache first strategy is useful for assets that have beeng revisioned, such as URLs like <code>/styles/example.a8f5f1.css</code>, since they can be cached for long periods of time.</p>
+              <h3 class="class-list"><a href="module-workbox-runtime-caching.CacheOnly.html">CacheOnly</a></h3>
+              <p>An implementation of a
+                <a href="/web/fundamentals/instant-and-offline/offline-cookbook/#cache-only">cache-only</a> request strategy.</p>
+              <p>This class is useful if you want to take advantage of any <a href="https://docs.google.com/document/d/1Qye_GDVNF1lzGmhBaUvbgwfBWRQDdPgwUAgsbs8jhsk/edit?usp=sharing">Workbox plugins</a>.</p>
+              <h3 class="class-list"><a href="module-workbox-runtime-caching.NetworkFirst.html">NetworkFirst</a></h3>
+              <p>An implementation of a
+                <a href="/web/fundamentals/instant-and-offline/offline-cookbook/#network-falling-back-to-cache">network first</a> request strategy.</p>
+              <p>By default, this strategy will cache responses with a 200 status code as well as <a href="https://docs.google.com/document/d/1nHIjXdmXs9nT6_lcGcsZY5UZ-tL9JxXESlKbzAJdBG4/edit?usp=sharing">opaque responses</a>. Opaque responses are are cross-origin
+                requests where the response doesn't support <a href="https://enable-cors.org/">CORS</a>.</p>
+              <h3 class="class-list"><a href="module-workbox-runtime-caching.NetworkOnly.html">NetworkOnly</a></h3>
+              <p>An implementation of a
+                <a href="/web/fundamentals/instant-and-offline/offline-cookbook/#network-only">network-only</a> request strategy.</p>
+              <p>This class is useful if you want to take advantage of any <a href="https://docs.google.com/document/d/1Qye_GDVNF1lzGmhBaUvbgwfBWRQDdPgwUAgsbs8jhsk/edit?usp=sharing">Workbox plugins</a>.</p>
+              <h3 class="class-list"><a href="module-workbox-runtime-caching.StaleWhileRevalidate.html">StaleWhileRevalidate</a></h3>
+              <p>An implementation of a
+                <a href="/web/fundamentals/instant-and-offline/offline-cookbook/#stale-while-revalidate">stale-while-revalidate</a> request strategy.</p>
+              <p>Resources are requested from both the cache and the network in parallel. The strategy will respond with the cached version if available, otherwise wait for the network response. The cache is updated with the network response with each successful
+                request.</p>
+              <p>By default, this strategy will cache responses with a 200 status code as well as <a href="https://docs.google.com/document/d/1nHIjXdmXs9nT6_lcGcsZY5UZ-tL9JxXESlKbzAJdBG4/edit?usp=sharing">opaque responses</a>. Opaque responses are are cross-origin
+                requests where the response doesn't support <a href="https://enable-cors.org/">CORS</a>.</p>
+            </section>
+          </section>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+</body>
+
+</html>
