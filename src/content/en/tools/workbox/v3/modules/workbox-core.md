@@ -1,6 +1,6 @@
 project_path: /web/_project.yaml
 book_path: /web/tools/_book.yaml
-description: How to use Workbox with Gulp.
+description: The module guide for workbox-core.
 
 {# wf_updated_on: 2017-11-06 #}
 {# wf_published_on: 2017-11-06 #}
