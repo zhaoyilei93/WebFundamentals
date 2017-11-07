@@ -172,8 +172,7 @@ const generateRefDocs = (projectName, gitUrl, docPath, tag, jsdocConfPath, isLat
 };
 
 const buildReferenceDocs = (projectName, gitUrl, localPath, jsdocConfPath) => {
-  const outputPath = path.join(localPath, 'v3');
-  fse.removeSync(outputPath);
+  fse.removeSync(localPath);
 
   return generateRefDocs(
     projectName,

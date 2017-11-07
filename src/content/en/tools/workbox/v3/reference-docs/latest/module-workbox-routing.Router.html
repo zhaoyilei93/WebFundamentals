@@ -17,11 +17,12 @@
           <header class="page-header">
             <h1><small><a href="module-workbox-routing.html">workbox-routing</a>.<wbr></small><span class="symbol-name">Router</span></h1>
             <div class="symbol-detail-labels"><span class="label label-kind"><small>class</small></span>&nbsp;&nbsp;&nbsp;<span class="label label-static"><small>static</small></span></div>
-            <p>The Router takes one or more Routes and passes each fetch event through it's routing logic to determine the appropriate way to respond with a Request.</p>
+            <p>The Router can be used to process a FetchEvent through one or more
+              <a href="module-workbox-routing.Route.html">Routes</a> responding with a Request if a matching route exists.</p>
             <p>If no route matches a given a request, the Router will use a &quot;default&quot; handler if one is defined.</p>
-            <p>Should any of the Route's throw an error, you can define a &quot;catch&quot; handler to gracefully deal with these issues and respond with a Request.</p>
-            <p>If a request matches multiple routes, precedence will be given to the
-              <strong>earliest</strong> registered route.</p>
+            <p>Should the matching Route throw an error, the Router will use a &quot;catch&quot; handler if one is defined to gracefully deal with issues and respond with a Request.
+            </p>
+            <p>If a request matches multiple routes, the <strong>earliest</strong> registered route will be used to respond to the request.</p>
           </header>
           <section>
             <h2>Constructor</h2>
@@ -29,7 +30,7 @@
               <h3 id="Router" class="symbol-name">Router</h3>
               <p class="type-signature"> new Router()
               </p>
-              <p>Constructs a new <code>Router</code> instance, without any registered routes.</p>
+              <p>Initializes a new Router.</p>
               <dl class="dl-compact">
               </dl>
             </section>
@@ -39,7 +40,7 @@
             <section>
               <h3 id="handleRequest" class="symbol-name">handleRequest</h3>
               <p class="type-signature"> handleRequest(event)&nbsp;returns&nbsp;(Promise containing Response or undefined)</p>
-              <p>Apply the routing rules to a FetchEvent object to get a Response from an appropriate handler.</p>
+              <p>Apply the routing rules to a FetchEvent object to get a Response from an appropriate Route's handler.</p>
               <section>
                 <table class="function param responsive">
                   <tr>
@@ -54,7 +55,8 @@
                       </td>
                       <td>
                         <p class="details-table-types">FetchEvent</p>
-                        <p>The event passed in to a <code>fetch</code> handler.</p>
+                        <p>The event from a service worker's 'fetch' event listener.
+                        </p>
                       </td>
                     </tr>
                   </tbody>
@@ -63,7 +65,7 @@
               <dl class="dl-compact">
                 <dt>Returns</dt>
                 <dd>
-                  <p><code>(Promise containing Response or undefined)</code>&nbsp;Returns a promise for a response, taking the registered routes into account. If there was no matching route and there's no <code>defaultHandler</code>, then returns undefined.</p>
+                  <p><code>(Promise containing Response or undefined)</code>&nbsp;A promise is returned if a registered route can handle the FetchEvent's request. If there is no matching route and there's no <code>defaultHandler</code>, <code>undefined</code>                    is returned.</p>
                 </dd>
               </dl>
               <h3 id="registerRoute" class="symbol-name">registerRoute</h3>
@@ -107,10 +109,8 @@
                         <p>handler</p>
                       </td>
                       <td>
-                        <p class="details-table-types">(function() or module:workbox-runtime-caching.Handler)</p>
-                        <p>This parameter can be either a function or an object with a <code>handle</code> function. See the
-                          <a href="module-workbox-routing.Route.html#~handlerCallback">Handler interface</a> for details.</p>
-                        <p>Either option should result in a <code>Response</code> that the <code>Route</code> can use to handle the <code>fetch</code> event.</p>
+                        <p class="details-table-types"><a href="module-workbox-routing.Route.html#~handlerCallback">module:workbox-routing.Route~handlerCallback</a></p>
+                        <p>A callback function that returns a Promise resulting in a Response.</p>
                       </td>
                     </tr>
                   </tbody>
@@ -120,8 +120,8 @@
               </dl>
               <h3 id="setDefaultHandler" class="symbol-name">setDefaultHandler</h3>
               <p class="type-signature"> setDefaultHandler(handler)</p>
-              <p>An optional <code>handler</code> that's called when no routes explicitly match the incoming request.</p>
-              <p>If the default is not provided, unmatched requests will go against the network as if there were no service worker present.</p>
+              <p>Define a default <code>handler</code> that's called when no routes explicitly match the incoming request.</p>
+              <p>Without a default handler, unmatched requests will go against the network as if there were no service worker present.</p>
               <section>
                 <table class="function param responsive">
                   <tr>
@@ -135,10 +135,8 @@
                         <p>handler</p>
                       </td>
                       <td>
-                        <p class="details-table-types">(function() or module:workbox-runtime-caching.Handler)</p>
-                        <p>This parameter can be either a function or an object with a <code>handle</code> function. See the
-                          <a href="module-workbox-routing.Route.html#~handlerCallback">Handler interface</a> for details.</p>
-                        <p>Either option should result in a <code>Response</code> object, which will be used to respond to the <code>fetch</code> event.</p>
+                        <p class="details-table-types"><a href="module-workbox-routing.Route.html#~handlerCallback">module:workbox-routing.Route~handlerCallback</a></p>
+                        <p>A callback function that returns a Promise resulting in a Response.</p>
                       </td>
                     </tr>
                   </tbody>

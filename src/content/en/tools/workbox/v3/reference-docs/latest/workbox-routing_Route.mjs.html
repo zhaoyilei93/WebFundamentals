@@ -42,47 +42,42 @@ import normalizeHandler from &#x27;./utils/normalizeHandler.mjs&#x27;;
 import &#x27;./_version.mjs&#x27;;
 
 /**
- * The &#x60;match&#x60; callback is used to determine if a new service worker &#x60;fetch&#x60;
- * event should be handled this &#x60;Route&#x60;. Returning a truthy value means
- * this &#x60;Route&#x60; will handle and respond to this &#x60;fetch&#x60; event.
+ * The &quot;match&quot; callback is used to determine if a &#x60;Route&#x60; should handle a
+ * service worker&#x27;s &#x60;fetch&#x60; event. Returning a truthy value means
+ * this &#x60;Route&#x60; will handle and respond to the event.
  *
  * Return &#x60;null&#x60; if this Route shouldn&#x27;t match against the &#x60;fetch&#x60; event.
  *
  * Any truthy value returned by this callback will be passed to the
- * Route&#x27;s &#x60;handler&#x60; callback.
- *
- * This callback is passed into the
- * [Route Constructor]{@link module:workbox-routing.Route}.
+ * Route&#x27;s
+ * [handler callback]{@link module:workbox-routing.Route~handlerCallback}.
  *
  * @callback Route~matchCallback
  * @param {Object} context
  * @param {URL} context.url The request&#x27;s URL.
- * @param {FetchEvent} context.event The event that triggered the &#x60;fetch&#x60;
- * handler.
+ * @param {FetchEvent} context.event The service worker&#x60;s &#x60;fetch&#x60;
+ * event.
  * @return {Object|null} To signify a match, return anything other than &#x60;null&#x60;.
- * Return &#x60;null&#x60; if the route shouldn&#x27;t match. If you return an Object with
- * contents, it will be passed to the Route&#x27;s
+ * Return &#x60;null&#x60; if the route shouldn&#x27;t match.
  * [handler]{@link module:workbox-routing.Route~handlerCallback}.
  *
  * @memberof module:workbox-routing
  */
 
 /**
- * The &#x60;handler&#x60; callback is called when a new service worker &#x60;fetch&#x60; event
+ * The &quot;handler&quot; callback is called when a service worker&#x27;s &#x60;fetch&#x60; event
  * has been matched by a &#x60;Route&#x60;. This callback should return a Promise that
  * resolves with a &#x60;Response&#x60;.
  *
- * If a value is returned by the &#x60;match&#x60; callback it will be passed in
- * as the &#x60;params&#x60; argument of this callback.
- *
- * This callback is passed into the
- * [Route Constructor]{@link module:workbox-routing.Route}.
+ * If a value is returned by the
+ * [match callback]{@link module:workbox-routing.Route~matchCallback} it
+ * will be passed in as the &#x60;context.params&#x60; argument.
  *
  * @callback Route~handlerCallback
  * @param {Object} context
  * @param {URL} context.url The request&#x27;s URL.
- * @param {FetchEvent} context.event The event that triggered the &#x60;fetch&#x60;
- * handler.
+ * @param {FetchEvent} context.event The service worker&#x27;s &#x60;fetch&#x60;
+ * event.
  * @param {Object} [context.params] Parameters returned by the Route&#x27;s
  * [match callback]{@link module:workbox-routing.Route~matchCallback} function.
  * This will be undefined if nothing was returned.
@@ -92,9 +87,11 @@ import &#x27;./_version.mjs&#x27;;
  */
 
 /**
- * A &#x60;Route&#x60; consists or a matcher and a handler. A matcher needs to determine
- * if a route should be used for a request. A handler returns a response
- * to the request if there&#x27;s a match.
+ * A &#x60;Route&#x60; consists of a pair of callback functions, &quot;match&quot; and &quot;handler&quot;.
+ * The &quot;match&quot; callback determine if a route should be used to &quot;handle&quot; a
+ * request by returning a non-falsy value if it can. The &quot;handler&quot; callback
+ * is called when there is a match and should return a Promise that resolves
+ * to a &#x60;Response&#x60;.
  *
  * @memberof module:workbox-routing
  */
@@ -104,14 +101,11 @@ class Route {
    *
    * @param {module:workbox-routing.Route~matchCallback} match
    * A callback function that determines whether the route matches a given
-   * &#x60;fetch&#x60; event.
-   * @param {
-   *   module:workbox-routing.Route~handlerCallback |
-   *   module:workbox-runtime-caching.Handler
-   * } handler This parameter can be either a callback function or an object
-   * which implements the &#x60;Handler&#x60; interface.
-   * @param {string} [method&#x3D;&#x27;GET&#x27;] Restrict the route to only match requests
-   * that use this HTTP method.
+   * &#x60;fetch&#x60; event by returning a non-falsy value.
+   * @param {module:workbox-routing.Route~handlerCallback} handler A callback
+   * function that returns a Promise resolving to a Response.
+   * @param {string} [method&#x3D;&#x27;GET&#x27;] The HTTP method to match the Route
+   * against.
    */
   constructor(match, handler, method) {
     if (process.env.NODE_ENV !&#x3D;&#x3D; &#x27;production&#x27;) {

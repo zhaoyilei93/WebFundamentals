@@ -48,45 +48,29 @@ if (process.env.NODE_ENV !&#x3D;&#x3D; &#x27;production&#x27;) {
 }
 
 /**
- * [See Router.setDefaultHandler()]{@link
- * module:workbox-routing.Router#setDefaultHandler}
- *
- * @function
- * @name module:workbox-routing.setDefaultHandler
- */
-
-/**
- * [See Router.setCatchHandler()]{@link
- * module:workbox-routing.Router#setCatchHandler}
- *
- * @function
- * @name module:workbox-routing.setCatchHandler
- */
-
-/**
- * [See Router.unregisterRoute()]{@link
- * module:workbox-routing.Router#unregisterRoute}
- *
- * @function
- * @name module:workbox-routing.unregisterRoute
- */
-
-/**
  * @private
  */
 class DefaultRouter extends Router {
   /**
-   * This is helper method that will generate and register a Route object
-   * from the provided &#x60;capture&#x60; and &#x60;handler&#x60; arguments.
+   * Easily register a Regular Expression or function with a caching
+   * strategy to the Router.
    *
-   * [See Router.registerRoute() for more info]{@link
+   * This method will generate a Route for you if needed and
+   * call [Router.registerRoute()]{@link
    * module:workbox-routing.Router#registerRoute}.
    *
-   * @param {RegExp|matchCallback|Route} capture If the capture param
-   * is a &#x60;Route&#x60;, all other arguments will be ignored.
-   * @param {workbox-route.Route~handlerCallback} handler
-   * @param {string} method
-   * @return {Route} Returns the generated Route.
+   * @param {
+   * RegExp|
+   * module:workbox-routing.Route~matchCallback|
+   * module:workbox-routing.Route
+   * } capture
+   * If the capture param is a &#x60;Route&#x60;, all other arguments will be ignored.
+   * @param {module:workbox-routing.Route~handlerCallback} handler A callback
+   * function that returns a Promise resulting in a Response.
+   * @param {string} [method&#x3D;&#x27;GET&#x27;] The HTTP method to match the Route
+   * against.
+   * @return {module:workbox-routing.Route} The generated &#x60;Route&#x60;(Useful for
+   * unregistering).
    *
    * @alias module:workbox-routing.registerRoute
    */
@@ -125,19 +109,31 @@ class DefaultRouter extends Router {
   }
 
   /**
-   * A helper method that will register a NavigationRoute that will respond
-   * to navigation requests with a cached URL.
+   * Register a route that will return a precached file for a navigation
+   * request. This is useful for the
+   * [application shell pattern]{@link /web/fundamentals/architecture/app-shell}.
+   *
+   * This method will generate a
+   * [NavigationRoute]{@link module: workbox-routing.NavigationRoute}
+   * and call
+   * [Router.registerRoute()]{@link module:workbox-routing.Router#registerRoute}
+   * .
    *
    * @param {string} cachedAssetUrl
-   * @param {Object} options
-   * @param {string} options.cacheName Cache name to store and retrieve
-   * requests. Defaults to precache cache name provided by &#x60;workbox-core&#x60;.
-   * @param {Array&amp;lt;RegExp&gt;} [options.blacklist] If any of these patterns match,
-   * the route will not handle the request (even if a whitelist entry matches).
+   * @param {Object} [options]
+   * @param {string} [options.cacheName] Cache name to store and retrieve
+   * requests. Defaults to precache cache name provided by
+   * [workbox-core.cacheNames]{@link module:workbox-core.cacheNames}.
+   * @param {Array&amp;lt;RegExp&gt;} [options.blacklist&#x3D;[]] If any of these patterns
+   * match, the route will not handle the request (even if a whitelist entry
+   * matches).
    * @param {Array&amp;lt;RegExp&gt;} [options.whitelist&#x3D;[/./]] If any of these patterns
    * match the URL&#x27;s pathname and search parameter, the route will handle the
    * request (assuming the blacklist doesn&#x27;t match).
-   * @return {NavigationRoute} Returns the generated Route.
+   * @return {module:workbox-routing.NavigationRoute} Returns the generated
+   * Route.
+   *
+   * @alias module:workbox-routing.registerNavigationRoute
    */
   registerNavigationRoute(cachedAssetUrl, options &#x3D; {}) {
     if (process.env.NODE_ENV !&#x3D;&#x3D; &#x27;production&#x27;) {
@@ -172,8 +168,6 @@ self.addEventListener(&#x27;fetch&#x27;, (event) &#x3D;&gt; {
     event.respondWith(responsePromise);
   }
 });
-
-// TODO Register Navigation Route
 
 export default router;
 </code></pre>

@@ -17,7 +17,8 @@
           <header class="page-header">
             <h1><small><a href="module-workbox-routing.html">workbox-routing</a>.<wbr></small><span class="symbol-name">Route</span></h1>
             <div class="symbol-detail-labels"><span class="label label-kind"><small>class</small></span>&nbsp;&nbsp;&nbsp;<span class="label label-static"><small>static</small></span></div>
-            <p>A <code>Route</code> consists or a matcher and a handler. A matcher needs to determine if a route should be used for a request. A handler returns a response to the request if there's a match.</p>
+            <p>A <code>Route</code> consists of a pair of callback functions, &quot;match&quot; and &quot;handler&quot;. The &quot;match&quot; callback determine if a route should be used to &quot;handle&quot; a request by returning a non-falsy value if
+              it can. The &quot;handler&quot; callback is called when there is a match and should return a Promise that resolves to a <code>Response</code>.</p>
           </header>
           <section>
             <h2>Constructor</h2>
@@ -40,7 +41,7 @@
                       <td>
                         <p class="details-table-types"><a href="module-workbox-routing.Route.html#~matchCallback">module:workbox-routing.Route~matchCallback</a></p>
                         <p>A callback function that determines whether the route matches a given
-                          <code>fetch</code> event.</p>
+                          <code>fetch</code> event by returning a non-falsy value.</p>
                       </td>
                     </tr>
                     <tr>
@@ -48,8 +49,8 @@
                         <p>handler</p>
                       </td>
                       <td>
-                        <p class="details-table-types">(<a href="module-workbox-routing.Route.html#~handlerCallback">module:workbox-routing.Route~handlerCallback</a> or module:workbox-runtime-caching.Handler)</p>
-                        <p>This parameter can be either a callback function or an object which implements the <code>Handler</code> interface.</p>
+                        <p class="details-table-types"><a href="module-workbox-routing.Route.html#~handlerCallback">module:workbox-routing.Route~handlerCallback</a></p>
+                        <p>A callback function that returns a Promise resolving to a Response.</p>
                       </td>
                     </tr>
                     <tr>
@@ -59,7 +60,8 @@
                       <td>
                         <p class="details-table-optional">Optional</p>
                         <p class="details-table-types">string</p>
-                        <p>Restrict the route to only match requests that use this HTTP method.</p>
+                        <p>The HTTP method to match the Route against.
+                        </p>
                       </td>
                     </tr>
                   </tbody>
@@ -75,10 +77,9 @@
               <h3 id="~handlerCallback" class="symbol-name">handlerCallback</h3>
               <div class="symbol-detail-labels"><span class="label label-inner"><small>inner</small></span></div>
               <p class="type-signature"> handlerCallback(context)&nbsp;returns&nbsp;Promise containing Response</p>
-              <p>The <code>handler</code> callback is called when a new service worker <code>fetch</code> event has been matched by a <code>Route</code>. This callback should return a Promise that resolves with a <code>Response</code>.</p>
-              <p>If a value is returned by the <code>match</code> callback it will be passed in as the <code>params</code> argument of this callback.</p>
-              <p>This callback is passed into the
-                <a href="module-workbox-routing.Route.html">Route Constructor</a>.</p>
+              <p>The &quot;handler&quot; callback is called when a service worker's <code>fetch</code> event has been matched by a <code>Route</code>. This callback should return a Promise that resolves with a <code>Response</code>.</p>
+              <p>If a value is returned by the
+                <a href="module-workbox-routing.Route.html#~matchCallback">match callback</a> it will be passed in as the <code>context.params</code> argument.</p>
               <section>
                 <table class="function param responsive">
                   <tr>
@@ -116,7 +117,7 @@
                               </td>
                               <td>
                                 <p class="details-table-types">FetchEvent</p>
-                                <p>The event that triggered the <code>fetch</code> handler.
+                                <p>The service worker's <code>fetch</code> event.
                                 </p>
                               </td>
                             </tr>
@@ -147,11 +148,10 @@
               <h3 id="~matchCallback" class="symbol-name">matchCallback</h3>
               <div class="symbol-detail-labels"><span class="label label-inner"><small>inner</small></span></div>
               <p class="type-signature"> matchCallback(context)&nbsp;returns&nbsp;(Object or null)</p>
-              <p>The <code>match</code> callback is used to determine if a new service worker <code>fetch</code> event should be handled this <code>Route</code>. Returning a truthy value means this <code>Route</code> will handle and respond to this <code>fetch</code>                event.</p>
+              <p>The &quot;match&quot; callback is used to determine if a <code>Route</code> should handle a service worker's <code>fetch</code> event. Returning a truthy value means this <code>Route</code> will handle and respond to the event.</p>
               <p>Return <code>null</code> if this Route shouldn't match against the <code>fetch</code> event.</p>
-              <p>Any truthy value returned by this callback will be passed to the Route's <code>handler</code> callback.</p>
-              <p>This callback is passed into the
-                <a href="module-workbox-routing.Route.html">Route Constructor</a>.</p>
+              <p>Any truthy value returned by this callback will be passed to the Route's
+                <a href="module-workbox-routing.Route.html#~handlerCallback">handler callback</a>.</p>
               <section>
                 <table class="function param responsive">
                   <tr>
@@ -189,7 +189,7 @@
                               </td>
                               <td>
                                 <p class="details-table-types">FetchEvent</p>
-                                <p>The event that triggered the <code>fetch</code> handler.
+                                <p>The service worker<code>s</code>fetch` event.
                                 </p>
                               </td>
                             </tr>
@@ -203,7 +203,7 @@
               <dl class="dl-compact">
                 <dt>Returns</dt>
                 <dd>
-                  <p><code>(Object or null)</code>&nbsp;To signify a match, return anything other than <code>null</code>. Return <code>null</code> if the route shouldn't match. If you return an Object with contents, it will be passed to the Route's
+                  <p><code>(Object or null)</code>&nbsp;To signify a match, return anything other than <code>null</code>. Return <code>null</code> if the route shouldn't match.
                     <a href="module-workbox-routing.Route.html#~handlerCallback">handler</a>.</p>
                 </dd>
               </dl>

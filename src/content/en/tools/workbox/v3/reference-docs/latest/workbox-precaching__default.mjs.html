@@ -145,7 +145,7 @@ const moduleExports &#x3D; {};
  *
  * @param {Array&amp;lt;Object|string&gt;} entries Array of entries to precache.
  *
- * @alias module:workbox-precaching.precache
+ * @alias workbox.precaching.precache
  */
 moduleExports.precache &#x3D; (entries) &#x3D;&gt; {
   precacheController.addToCacheList(entries);
@@ -180,7 +180,7 @@ moduleExports.precache &#x3D; (entries) &#x3D;&gt; {
  * @param {Array&amp;lt;RegExp&gt;} [options.ignoreUrlParametersMatching&#x3D;[/^utm_/]] An
  * array of regex&#x27;s to remove search params when looking for a cache match.
  *
- * @alias module:workbox-precaching.addRoute
+ * @alias workbox.precaching.addRoute
  */
 moduleExports.addRoute &#x3D; (options) &#x3D;&gt; {
   if (fetchListenersAdded) {
@@ -215,7 +215,7 @@ moduleExports.addRoute &#x3D; (options) &#x3D;&gt; {
  * @param {Object} options See
  * [addRoute() options]{@link module:workbox-precaching.addRoute}.
  *
- * @alias module:workbox-precaching.precacheAndRoute
+ * @alias workbox.precaching.precacheAndRoute
  */
 moduleExports.precacheAndRoute &#x3D; (entries, options) &#x3D;&gt; {
   moduleExports.precache(entries);
@@ -229,7 +229,7 @@ moduleExports.precacheAndRoute &#x3D; (entries, options) &#x3D;&gt; {
  *
  * @param {boolean} suppress
  *
- * @alias module:workbox-precahcing.suppressWarnings
+ * @alias workbox.precaching.suppressWarnings
  */
 moduleExports.suppressWarnings &#x3D; (suppress) &#x3D;&gt; {
   suppressWarnings &#x3D; suppress;

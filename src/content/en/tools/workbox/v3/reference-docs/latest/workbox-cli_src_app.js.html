@@ -42,15 +42,16 @@ const prettyBytes &#x3D; require(&#x27;pretty-bytes&#x27;);
 const workboxBuild &#x3D; require(&#x27;workbox-build&#x27;);
 
 const errors &#x3D; require(&#x27;./lib/errors&#x27;);
-const readConfig &#x3D; require(&#x27;./lib/read-config&#x27;);
 const logger &#x3D; require(&#x27;./lib/logger&#x27;);
+const readConfig &#x3D; require(&#x27;./lib/read-config&#x27;);
+const runWizard &#x3D; require(&#x27;./lib/run-wizard&#x27;);
 
 module.exports &#x3D; async (command, configFile) &#x3D;&gt; {
   assert(command, errors[&#x27;missing-command-param&#x27;]);
 
   switch (command) {
     case &#x27;wizard&#x27;: {
-      // TODO: Port over wizard code.
+      await runWizard();
       break;
     }
 

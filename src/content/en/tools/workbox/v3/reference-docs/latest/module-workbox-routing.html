@@ -22,38 +22,119 @@
             <h2>Classes</h2>
             <section id='members-links'>
               <h3 class="class-list"><a href="module-workbox-routing.NavigationRoute.html">NavigationRoute</a></h3>
-              <p>NavigationRoute is a helper class to create a <a href="module-workbox-routing.Route.html">Route</a> that matches for browser navigation requests, i.e. requests for HTML pages.</p>
-              <p>It will only match incoming requests whose <a href="https://fetch.spec.whatwg.org/#concept-request-mode"><code>mode</code></a> is set to <code>navigate</code>.</p>
-              <p>You can optionally only apply this route to a subset of navigation requests by using one or both of the <code>blacklist</code> and <code>whitelist</code> parameters. If both lists are provided, the blacklist will take precedence and the
-                request will not be matched by this route.</p>
-              <p>The regular expressions in <code>whitelist</code> and <code>blacklist</code> are matched against the concatenated
-                <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/pathname"><code>pathname</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/search"><code>search</code></a>                portions of the requested URL.</p>
+              <p>NavigationRoute makes it easy to create a <a href="module-workbox-routing.Route.html">Route</a> that matches for browser
+                <a href="/web/fundamentals/primers/service-workers/high-performance-loading#first_what_are_navigation_requests">navigation requests</a>.</p>
+              <p>It will only match incoming Requests whose
+                <a href="https://fetch.spec.whatwg.org/#concept-request-mode"><code>mode</code></a> is set to <code>navigate</code>.</p>
+              <p>You can optionally only apply this route to a subset of navigation requests by using one or both of the <code>blacklist</code> and <code>whitelist</code> parameters.</p>
               <h3 class="class-list"><a href="module-workbox-routing.RegExpRoute.html">RegExpRoute</a></h3>
-              <p>RegExpRoute is a helper class to make defining regular expression based
-                <a href="module-workbox-routing.Route.html">Routes</a> easy.</p>
-              <p>Please note that this only needs to match any part of the URL for same-origin requests. For requests against third-party servers, you must define a RegExp that matches the start of the URL.</p>
-              <p>For example,</p>
-              <pre class="prettyprint source"><code>// Matches all local styles
-new RegExpRoute(new RegExp('/styles/'), ...);</code></pre>
-              <p>while</p>
-              <pre class="prettyprint source lang-js"><code> // Matches third-party styles
-new RegexpRoute(new RegExp('https://example\.com/styles/'), ...);</code></pre>
+              <p>RegExpRoute makes it easy to create a regular expression based
+                <a href="module-workbox-routing.Route.html">Route</a>.</p>
+              <p>For same-origin requests the RegExp only needs to match part of the URL. For requests against third-party servers, you must define a RegExp that matches the start of the URL.</p>
+              <p><a href="https://docs.google.com/document/d/1K7Up3vxSoSDeO3dSoLBKFoZ0oaEonQjsDCQJj9NKAJQ/edit?usp=sharing">See the module docs for info.</a></p>
               <h3 class="class-list"><a href="module-workbox-routing.Route.html">Route</a></h3>
-              <p>A <code>Route</code> consists or a matcher and a handler. A matcher needs to determine if a route should be used for a request. A handler returns a response to the request if there's a match.</p>
+              <p>A <code>Route</code> consists of a pair of callback functions, &quot;match&quot; and &quot;handler&quot;. The &quot;match&quot; callback determine if a route should be used to &quot;handle&quot; a request by returning a non-falsy value if
+                it can. The &quot;handler&quot; callback is called when there is a match and should return a Promise that resolves to a <code>Response</code>.</p>
               <h3 class="class-list"><a href="module-workbox-routing.Router.html">Router</a></h3>
-              <p>The Router takes one or more Routes and passes each fetch event through it's routing logic to determine the appropriate way to respond with a Request.</p>
+              <p>The Router can be used to process a FetchEvent through one or more
+                <a href="module-workbox-routing.Route.html">Routes</a> responding with a Request if a matching route exists.</p>
               <p>If no route matches a given a request, the Router will use a &quot;default&quot; handler if one is defined.</p>
-              <p>Should any of the Route's throw an error, you can define a &quot;catch&quot; handler to gracefully deal with these issues and respond with a Request.</p>
-              <p>If a request matches multiple routes, precedence will be given to the
-                <strong>earliest</strong> registered route.</p>
+              <p>Should the matching Route throw an error, the Router will use a &quot;catch&quot; handler if one is defined to gracefully deal with issues and respond with a Request.
+              </p>
+              <p>If a request matches multiple routes, the <strong>earliest</strong> registered route will be used to respond to the request.</p>
             </section>
             <h2>Methods</h2>
             <section>
+              <h3 id=".registerNavigationRoute" class="symbol-name">registerNavigationRoute</h3>
+              <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
+              <p class="type-signature"> registerNavigationRoute(cachedAssetUrl, options)&nbsp;returns&nbsp;<a href="module-workbox-routing.NavigationRoute.html">module:workbox-routing.NavigationRoute</a></p>
+              <p>Register a route that will return a precached file for a navigation request. This is useful for the
+                <a href="/web/fundamentals/architecture/app-shell">application shell pattern</a>.</p>
+              <p>This method will generate a NavigationRoute and call
+                <a href="module-workbox-routing.Router.html#registerRoute">Router.registerRoute()</a> .
+              </p>
+              <section>
+                <table class="function param responsive">
+                  <tr>
+                    <th colspan="2">
+                      <h4>Parameter</h4>
+                    </th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>cachedAssetUrl</p>
+                      </td>
+                      <td>
+                        <p class="details-table-types">string</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>options</p>
+                      </td>
+                      <td>
+                        <p class="details-table-optional">Optional</p>
+                        <p class="details-table-types">Object</p>
+                        <p>Values in <code>options</code> have the following properties:</p>
+                        <table class="function param responsive">
+                          <tr>
+                            <th colspan="2">
+                              <h4>Parameter</h4>
+                            </th>
+                          </tr>
+                          <tbody>
+                            <tr>
+                              <td class="details-table-name">
+                                <p>cacheName</p>
+                              </td>
+                              <td>
+                                <p class="details-table-optional">Optional</p>
+                                <p class="details-table-types">string</p>
+                                <p>Cache name to store and retrieve requests. Defaults to precache cache name provided by workbox-core.cacheNames.
+                                </p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="details-table-name">
+                                <p>blacklist</p>
+                              </td>
+                              <td>
+                                <p class="details-table-optional">Optional</p>
+                                <p class="details-table-types">Array of RegExp</p>
+                                <p>If any of these patterns match, the route will not handle the request (even if a whitelist entry matches).
+                                </p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="details-table-name">
+                                <p>whitelist</p>
+                              </td>
+                              <td>
+                                <p class="details-table-optional">Optional</p>
+                                <p class="details-table-types">Array of RegExp</p>
+                                <p>If any of these patterns match the URL's pathname and search parameter, the route will handle the request (assuming the blacklist doesn't match).</p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code><a href="module-workbox-routing.NavigationRoute.html">module:workbox-routing.NavigationRoute</a></code>&nbsp;Returns the generated Route.
+                  </p>
+                </dd>
+              </dl>
               <h3 id=".registerRoute" class="symbol-name">registerRoute</h3>
               <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
-              <p class="type-signature"> registerRoute(capture, handler, method)&nbsp;returns&nbsp;Route</p>
-              <p>This is helper method that will generate and register a Route object from the provided <code>capture</code> and <code>handler</code> arguments.</p>
-              <p><a href="module-workbox-routing.Router.html#registerRoute">See Router.registerRoute() for more info</a>.</p>
+              <p class="type-signature"> registerRoute(capture, handler, method)&nbsp;returns&nbsp;<a href="module-workbox-routing.Route.html">module:workbox-routing.Route</a></p>
+              <p>Easily register a Regular Expression or function with a caching strategy to the Router.</p>
+              <p>This method will generate a Route for you if needed and call <a href="module-workbox-routing.Router.html#registerRoute">Router.registerRoute()</a>.</p>
               <section>
                 <table class="function param responsive">
                   <tr>
@@ -67,7 +148,7 @@ new RegexpRoute(new RegExp('https://example\.com/styles/'), ...);</code></pre>
                         <p>capture</p>
                       </td>
                       <td>
-                        <p class="details-table-types">(RegExp, matchCallback, or Route)</p>
+                        <p class="details-table-types">(RegExp, <a href="module-workbox-routing.Route.html#~matchCallback">module:workbox-routing.Route~matchCallback</a>, or <a href="module-workbox-routing.Route.html">module:workbox-routing.Route</a>)</p>
                         <p>If the capture param is a <code>Route</code>, all other arguments will be ignored.</p>
                       </td>
                     </tr>
@@ -76,7 +157,8 @@ new RegexpRoute(new RegExp('https://example\.com/styles/'), ...);</code></pre>
                         <p>handler</p>
                       </td>
                       <td>
-                        <p class="details-table-types">workbox-route.Route~handlerCallback</p>
+                        <p class="details-table-types"><a href="module-workbox-routing.Route.html#~handlerCallback">module:workbox-routing.Route~handlerCallback</a></p>
+                        <p>A callback function that returns a Promise resulting in a Response.</p>
                       </td>
                     </tr>
                     <tr>
@@ -84,7 +166,10 @@ new RegexpRoute(new RegExp('https://example\.com/styles/'), ...);</code></pre>
                         <p>method</p>
                       </td>
                       <td>
+                        <p class="details-table-optional">Optional</p>
                         <p class="details-table-types">string</p>
+                        <p>The HTTP method to match the Route against.
+                        </p>
                       </td>
                     </tr>
                   </tbody>
@@ -93,25 +178,84 @@ new RegexpRoute(new RegExp('https://example\.com/styles/'), ...);</code></pre>
               <dl class="dl-compact">
                 <dt>Returns</dt>
                 <dd>
-                  <p><code>Route</code>&nbsp;Returns the generated Route.</p>
+                  <p><code><a href="module-workbox-routing.Route.html">module:workbox-routing.Route</a></code>&nbsp;The generated <code>Route</code>(Useful for unregistering).
+                  </p>
                 </dd>
               </dl>
               <h3 id=".setCatchHandler" class="symbol-name">setCatchHandler</h3>
               <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
-              <p class="type-signature"> setCatchHandler()</p>
-              <p><a href="module-workbox-routing.Router.html#setCatchHandler">See Router.setCatchHandler()</a></p>
+              <p class="type-signature"> setCatchHandler(handler)</p>
+              <p>If a Route throws an error while handling a request, this <code>handler</code> will be called and given a chance to provide a response.</p>
+              <section>
+                <table class="function param responsive">
+                  <tr>
+                    <th colspan="2">
+                      <h4>Parameter</h4>
+                    </th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>handler</p>
+                      </td>
+                      <td>
+                        <p>A callback function that returns a Promise resulting in a Response.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
               <dl class="dl-compact">
               </dl>
               <h3 id=".setDefaultHandler" class="symbol-name">setDefaultHandler</h3>
               <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
-              <p class="type-signature"> setDefaultHandler()</p>
-              <p><a href="module-workbox-routing.Router.html#setDefaultHandler">See Router.setDefaultHandler()</a></p>
+              <p class="type-signature"> setDefaultHandler(handler)</p>
+              <p>Define a default <code>handler</code> that's called when no routes explicitly match the incoming request.</p>
+              <p>Without a default handler, unmatched requests will go against the network as if there were no service worker present.</p>
+              <section>
+                <table class="function param responsive">
+                  <tr>
+                    <th colspan="2">
+                      <h4>Parameter</h4>
+                    </th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>handler</p>
+                      </td>
+                      <td>
+                        <p>A callback function that returns a Promise resulting in a Response.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
               <dl class="dl-compact">
               </dl>
               <h3 id=".unregisterRoute" class="symbol-name">unregisterRoute</h3>
               <div class="symbol-detail-labels"><span class="label label-static"><small>static</small></span></div>
-              <p class="type-signature"> unregisterRoute()</p>
-              <p><a href="module-workbox-routing.Router.html#unregisterRoute">See Router.unregisterRoute()</a></p>
+              <p class="type-signature"> unregisterRoute(route)</p>
+              <p>Unregisters a route with the router.</p>
+              <section>
+                <table class="function param responsive">
+                  <tr>
+                    <th colspan="2">
+                      <h4>Parameter</h4>
+                    </th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td class="details-table-name">
+                        <p>route</p>
+                      </td>
+                      <td>
+                        <p>The route to unregister.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
               <dl class="dl-compact">
               </dl>
             </section>

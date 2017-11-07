@@ -36,8 +36,8 @@ toc:
   - title: Reference Docs
     section:
     - title: "workbox-core"
-      path: /web/tools/workbox/v3/reference-docs/latest/module-workbox-core
+      path: /web/tools/workbox/v3/reference-docs/latest/workbox.core
     - title: "workbox-precaching"
-      path: /web/tools/workbox/v3/reference-docs/latest/module-workbox-precaching
+      path: /web/tools/workbox/v3/reference-docs/latest/workbox.precaching
     - title: "View Full API"
       path: /web/tools/workbox/v3/reference-docs/latest/index-all

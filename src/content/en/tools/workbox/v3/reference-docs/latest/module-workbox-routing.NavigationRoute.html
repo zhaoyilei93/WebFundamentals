@@ -17,19 +17,20 @@
           <header class="page-header">
             <h1><small><a href="module-workbox-routing.html">workbox-routing</a>.<wbr></small><span class="symbol-name">NavigationRoute</span></h1>
             <div class="symbol-detail-labels"><span class="label label-kind"><small>class</small></span>&nbsp;&nbsp;&nbsp;<span class="label label-static"><small>static</small></span></div>
-            <p>NavigationRoute is a helper class to create a <a href="module-workbox-routing.Route.html">Route</a> that matches for browser navigation requests, i.e. requests for HTML pages.</p>
-            <p>It will only match incoming requests whose <a href="https://fetch.spec.whatwg.org/#concept-request-mode"><code>mode</code></a> is set to <code>navigate</code>.</p>
-            <p>You can optionally only apply this route to a subset of navigation requests by using one or both of the <code>blacklist</code> and <code>whitelist</code> parameters. If both lists are provided, the blacklist will take precedence and the request
-              will not be matched by this route.</p>
-            <p>The regular expressions in <code>whitelist</code> and <code>blacklist</code> are matched against the concatenated
-              <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/pathname"><code>pathname</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/search"><code>search</code></a>              portions of the requested URL.</p>
+            <p>NavigationRoute makes it easy to create a <a href="module-workbox-routing.Route.html">Route</a> that matches for browser
+              <a href="/web/fundamentals/primers/service-workers/high-performance-loading#first_what_are_navigation_requests">navigation requests</a>.</p>
+            <p>It will only match incoming Requests whose
+              <a href="https://fetch.spec.whatwg.org/#concept-request-mode"><code>mode</code></a> is set to <code>navigate</code>.</p>
+            <p>You can optionally only apply this route to a subset of navigation requests by using one or both of the <code>blacklist</code> and <code>whitelist</code> parameters.</p>
           </header>
           <section>
             <h2>Constructor</h2>
             <section>
               <h3 id="NavigationRoute" class="symbol-name">NavigationRoute</h3>
               <p class="type-signature"> new NavigationRoute(handler, options)</p>
-              <p>Constructor for NavigationRoute.</p>
+              <p>If both <code>blacklist</code> and <code>whiltelist</code> are provided, the <code>blacklist</code> will take precedence and the request will not match this route.</p>
+              <p>The regular expressions in <code>whitelist</code> and <code>blacklist</code> are matched against the concatenated
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/pathname"><code>pathname</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/search"><code>search</code></a>                portions of the requested URL.</p>
               <section>
                 <table class="function param responsive">
                   <tr>
@@ -43,8 +44,8 @@
                         <p>handler</p>
                       </td>
                       <td>
-                        <p class="details-table-types">(function() or module:workbox-runtime-caching.Handler)</p>
-                        <p>The handler to use to provide a response if the route matches.</p>
+                        <p class="details-table-types"><a href="module-workbox-routing.Route.html#~handlerCallback">module:workbox-routing.Route~handlerCallback</a></p>
+                        <p>A callback function that returns a Promise resulting in a Response.</p>
                       </td>
                     </tr>
                     <tr>
@@ -68,7 +69,7 @@
                               <td>
                                 <p class="details-table-optional">Optional</p>
                                 <p class="details-table-types">Array of RegExp</p>
-                                <p>If any of these patterns match, the route will not handle the request (even if a whitelist entry matches).</p>
+                                <p>If any of these patterns match, the route will not handle the request (even if a whitelist RegExp matches).</p>
                               </td>
                             </tr>
                             <tr>
@@ -90,68 +91,11 @@
               </section>
               <dl class="dl-compact">
                 <dt>Extends</dt>
-                <dd><small>Route</small></dd>
+                <dd><small><a href="module-workbox-routing.Route.html">module:workbox-routing.Route</a></small></dd>
               </dl>
             </section>
           </section>
           <section>
-            <h2>Method</h2>
-            <section>
-              <h3 id="_match" class="symbol-name">_match</h3>
-              <p class="type-signature"> _match(input)&nbsp;returns&nbsp;boolean</p>
-              <p>Routes match handler.</p>
-              <section>
-                <table class="function param responsive">
-                  <tr>
-                    <th colspan="2">
-                      <h4>Parameter</h4>
-                    </th>
-                  </tr>
-                  <tbody>
-                    <tr>
-                      <td class="details-table-name">
-                        <p>input</p>
-                      </td>
-                      <td>
-                        <p class="details-table-types">Object</p>
-                        <p>Values in <code>input</code> have the following properties:</p>
-                        <table class="function param responsive">
-                          <tr>
-                            <th colspan="2">
-                              <h4>Parameter</h4>
-                            </th>
-                          </tr>
-                          <tbody>
-                            <tr>
-                              <td class="details-table-name">
-                                <p>event</p>
-                              </td>
-                              <td>
-                                <p class="details-table-types">FetchEvent</p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="details-table-name">
-                                <p>url</p>
-                              </td>
-                              <td>
-                                <p class="details-table-types">URL</p>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </section>
-              <dl class="dl-compact">
-                <dt>Returns</dt>
-                <dd>
-                  <p><code>boolean</code>&nbsp;</p>
-                </dd>
-              </dl>
-            </section>
           </section>
         </div>
       </div>

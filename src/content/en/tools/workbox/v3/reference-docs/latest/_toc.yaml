@@ -16,7 +16,7 @@ toc:
 - title: "NetworkOnly"
   path: /web/tools/workbox/v3/reference-docs/latest/module-workbox-runtime-caching.NetworkOnly
 - title: "PrecacheController"
-  path: /web/tools/workbox/v3/reference-docs/latest/module-workbox-precaching.PrecacheController
+  path: /web/tools/workbox/v3/reference-docs/latest/workbox.precaching.PrecacheController
 - title: "Queue"
   path: /web/tools/workbox/v3/reference-docs/latest/module-workbox-background-sync.Queue
 - title: "QueuePlugin"
@@ -29,6 +29,10 @@ toc:
   path: /web/tools/workbox/v3/reference-docs/latest/module-workbox-routing.Router
 - title: "StaleWhileRevalidate"
   path: /web/tools/workbox/v3/reference-docs/latest/module-workbox-runtime-caching.StaleWhileRevalidate
+- title: "workbox.core"
+  path: /web/tools/workbox/v3/reference-docs/latest/workbox.core
+- title: "workbox.precaching"
+  path: /web/tools/workbox/v3/reference-docs/latest/workbox.precaching
 - title: "WorkboxSW"
   path: /web/tools/workbox/v3/reference-docs/latest/module-workbox-sw-WorkboxSW
 - title: "WorkboxWebpackPlugin"
