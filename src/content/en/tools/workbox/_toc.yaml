@@ -33,6 +33,8 @@ toc:
     section:
     - title: workbox-core
       path: /web/tools/workbox/v3/modules/workbox-core
+    - title: workbox-precaching
+      path: /web/tools/workbox/v3/modules/workbox-precaching
   - title: Reference Docs
     section:
     - title: "workbox-core"
